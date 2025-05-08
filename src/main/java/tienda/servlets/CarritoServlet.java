@@ -39,8 +39,11 @@ public class CarritoServlet extends HttpServlet {
             switch (action) {
                 case "add":
                     int cantidad = Integer.parseInt(request.getParameter("cantidad"));
-                    if (bd.verificarStock(codigo, cantidad, sessionId)) {
-                        carrito.put(codigo, carrito.getOrDefault(codigo, 0) + cantidad);
+                    int cantidadActual = carrito.getOrDefault(codigo, 0);
+                    int cantidadTotal = cantidadActual + cantidad;
+                    // Verificar y reservar la cantidad total deseada
+                    if (bd.verificarStock(codigo, cantidadTotal, sessionId)) {
+                        carrito.put(codigo, cantidadTotal);
                         jsonResponse.addProperty("success", true);
                         jsonResponse.addProperty("message", "Producto añadido al carrito");
                     } else {
@@ -51,9 +54,9 @@ public class CarritoServlet extends HttpServlet {
 
                 case "decrease":
                     if (carrito.containsKey(codigo)) {
-                        int cantidadActual = carrito.get(codigo);
-                        if (cantidadActual > 1) {
-                            carrito.put(codigo, cantidadActual - 1);
+                        int cantidadActualDecrease = carrito.get(codigo);
+                        if (cantidadActualDecrease > 1) {
+                            carrito.put(codigo, cantidadActualDecrease - 1);
                             StockTemporal.getInstance().liberarStock(codigo, sessionId);
                             jsonResponse.addProperty("success", true);
                             jsonResponse.addProperty("message", "Cantidad actualizada");
