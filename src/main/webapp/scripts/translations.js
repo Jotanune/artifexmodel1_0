@@ -51,6 +51,20 @@ const translations = {
         "preguntaDesc": "Estamos aquí para ayudarte a encontrar la obra perfecta para tu espacio",
         "contactanos": "Contáctanos",
 
+        // Página de contacto
+        "contactanosTitle": "Contáctanos",
+        "enviarMensaje": "Envíanos un mensaje",
+        "nombre": "Nombre",
+        "correoElectronico": "Correo electrónico",
+        "telefono": "Teléfono",
+        "mensaje": "Mensaje",
+        "enviarMensajeBtn": "Enviar mensaje",
+        "infoContacto": "Información de contacto",
+        "horarioAtencion": "Horario de atención:",
+        "horarioDetalles": "Lunes a Viernes de 9:00 AM a 6:00 PM",
+        "telefonoLabel": "Teléfono:",
+        "correoLabel": "Correo electrónico:",
+
         // Elementos comunes
         "languageSwitch": "Cambiar idioma",
         "themeSwitch": "Cambiar tema",
@@ -108,6 +122,20 @@ const translations = {
         "preguntaTitle": "Have any questions?",
         "preguntaDesc": "We're here to help you find the perfect piece for your space",
         "contactanos": "Contact Us",
+
+        // Contact page
+        "contactanosTitle": "Contact Us",
+        "enviarMensaje": "Send us a message",
+        "nombre": "Name",
+        "correoElectronico": "Email",
+        "telefono": "Phone",
+        "mensaje": "Message",
+        "enviarMensajeBtn": "Send message",
+        "infoContacto": "Contact Information",
+        "horarioAtencion": "Business Hours:",
+        "horarioDetalles": "Monday to Friday from 9:00 AM to 6:00 PM",
+        "telefonoLabel": "Phone:",
+        "correoLabel": "Email:",
 
         // Common elements
         "languageSwitch": "Change language",

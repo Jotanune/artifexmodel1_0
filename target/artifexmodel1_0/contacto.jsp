@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="./img/artifex.png" type="image/png">
+  <title>Artifex</title>
+  <link rel="stylesheet" href="./styles/menu.css">
+  <link rel="stylesheet" href="./styles/footer.css">
+  <link rel="stylesheet" href="./styles/body.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Outfit:wght@100..900&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <mi-menu></mi-menu>
+  <div class="container">
+    <h1 class="text-center" data-i18n="contactTitle">Contáctanos</h1>
+    <div class="contact-divider"></div>
+    <div class="iframe-container">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5571.013996470447!2d-0.42461040000000044!3d39.5125615!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd60450d03d31e81%3A0xb2d49176f911a805!2sETSE%20-%20Escuela%20T%C3%A9cnica%20Superior%20de%20Ingenier%C3%ADa%20(Universidad%20de%20Valencia)!5e1!3m2!1ses!2ses!4v1740741519939!5m2!1ses!2ses"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+    <div class="contact-divider"></div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="contact-form">
+          <h2 data-i18n="enviarMensaje">Envíanos un mensaje</h2>
+          <form action="mailto:tuemail@dominio.com" method="post" enctype="text/plain">
+            <div class="form-group">
+              <label for="nombre" data-i18n="nombre">Nombre</label>
+              <input type="text" class="form-control" id="nombre" name="nombre" required>
+            </div>
+            <div class="form-group">
+              <label for="email" data-i18n="correoElectronico">Correo electrónico</label>
+              <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="telefono" data-i18n="telefono">Teléfono</label>
+              <input type="tel" class="form-control" id="telefono" name="telefono" required>
+            </div>
+            <div class="form-group">
+              <label for="mensaje" data-i18n="mensaje">Mensaje</label>
+              <textarea class="form-control" id="mensaje" name="mensaje" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" data-i18n="enviarButton">Enviar mensaje</button>
+          </form>
+        </div>
+      </div>
+      
+      <div class="col-md-6">
+        <div class="contact-info">
+          <h2 data-i18n="infoContacto">Información de contacto</h2>
+          <p><strong data-i18n="horarioAtencion">Horario de atención</strong><br> 
+            <info data-i18n="horarioDesc">Lunes a Viernes de 9:00 AM a 6:00 PM</info>
+          </p>
+          <p><strong data-i18n="telefonoLabel">Teléfono</strong><br>
+            <info data-i18n="telefonoNum">+34 123 456 789</info>
+          </p>
+          <p><strong data-i18n="correoLabel">Correo electrónico</strong><br>
+            <info data-i18n="correoDir">contacto@artifex.com</info>
+          </p>
+          <div class="social-links mt-4">
+            <a href="#" class="social-link">
+              <img src="./img/facebook.png" alt="Facebook" class="social-icon">
+            </a>
+            <a href="#" class="social-link ms-3">
+              <img src="./img/instagram.png" alt="Instagram" class="social-icon">
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="contact-divider"></div>
+  <mi-footer></mi-footer>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+  <script src="./scripts/translations.js"></script>
+  <script src="./scripts/i18n.js"></script>
+  <script src="./scripts/menu.js"></script>
+  <script src="./scripts/footer.js"></script>
+  <script src="./scripts/carrito.js"></script>
+</body>
+
+</html>
