@@ -34,13 +34,13 @@ class Menu extends HTMLElement {
                 <div class="collapse navbar-collapse" id="navbarExampleDefault">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="./empresa.html">Empresa</a>
+                            <a class="nav-link" href="./empresa.html" data-i18n="empresa">Empresa</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./contacto.html">Contacto</a>
+                            <a class="nav-link" href="./contacto.html" data-i18n="contacto">Contacto</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./productos.jsp">Productos</a>
+                            <a class="nav-link" href="./productos.jsp" data-i18n="productos">Productos</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav ms-auto">
@@ -56,11 +56,11 @@ class Menu extends HTMLElement {
                             </a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="carritoDropdown" role="button" data-bs-toggle="dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="carritoDropdown" role="button" data-bs-toggle="dropdown" data-i18n="carrito">
                                 Carrito
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
-                                <a class="dropdown-item" href="#">Vacío</a>
+                                <a class="dropdown-item" href="#" data-i18n="vacio">Vacío</a>
                             </div>
                         </li>
                         <li class="nav-item">
@@ -86,13 +86,13 @@ class Menu extends HTMLElement {
                 <div class="collapse navbar-collapse" id="navbarExampleDefault">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="./empresa.html">Empresa</a>
+                            <a class="nav-link" href="./empresa.html" data-i18n="empresa">Empresa</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./contacto.html">Contacto</a>
+                            <a class="nav-link" href="./contacto.html" data-i18n="contacto">Contacto</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./productos.jsp">Productos</a>
+                            <a class="nav-link" href="./productos.jsp" data-i18n="productos">Productos</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav ms-auto">
@@ -108,17 +108,17 @@ class Menu extends HTMLElement {
                                 <span class="usuario-nombre">${usuario}</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
-                                <a class="dropdown-item" href="./my-account.jsp">Mi cuenta</a>
+                                <a class="dropdown-item" href="./my-account.jsp" data-i18n="miCuenta">Mi cuenta</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="./logout">Cerrar sesión</a>
+                                <a class="dropdown-item" href="./logout" data-i18n="cerrarSesion">Cerrar sesión</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="carritoDropdown" role="button" data-bs-toggle="dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="carritoDropdown" role="button" data-bs-toggle="dropdown" data-i18n="carrito">
                                 Carrito
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
-                                <a class="dropdown-item" href="#">Vacío</a>
+                                <a class="dropdown-item" href="#" data-i18n="vacio">Vacío</a>
                             </div>
                         </li>
                         <li class="nav-item">
@@ -180,6 +180,8 @@ class Menu extends HTMLElement {
                 this.setLanguage(newLang);
                 localStorage.setItem('language', newLang);
                 document.dispatchEvent(new Event('languageChanged'));
+                // Traducir la página inmediatamente
+                translatePage();
             });
         }
     }

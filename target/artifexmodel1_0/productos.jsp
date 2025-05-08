@@ -163,6 +163,8 @@
     <script src="./scripts/menu.js"></script>
     <script src="./scripts/footer.js"></script>
     <script src="./scripts/carrito.js"></script>
+    <script src="./scripts/translations.js"></script>
+    <script src="./scripts/i18n.js"></script>
     <script>
       function cambiarCategoria(categoria) {
         // Limpiar la búsqueda al cambiar de categoría

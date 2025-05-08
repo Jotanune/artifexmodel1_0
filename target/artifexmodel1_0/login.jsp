@@ -41,5 +41,7 @@
     <script src="./scripts/carrito.js"></script>
     <script src="./scripts/footer.js"></script>
     <script src="./scripts/user.js"></script>
+    <script src="./scripts/translations.js"></script>
+    <script src="./scripts/i18n.js"></script>
   </body>
 </html>
