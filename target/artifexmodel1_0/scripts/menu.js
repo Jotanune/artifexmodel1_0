@@ -202,7 +202,7 @@ class Menu extends HTMLElement {
         } else {
             currentFlag.src = './img/uk.png';
             currentFlag.alt = 'English';
-            currentLang.textContent = 'UK';
+            currentLang.textContent = 'EN';
         }
     }
 }

@@ -37,7 +37,7 @@ function showNotification(message) {
 
 async function anyadirProducto(codigo, descripcion, cantidad) {
     if (cantidad === undefined || cantidad <= 0) {
-        alert("Debes asignar por lo menos un producto");
+        alert(t("debesAsignarProducto"));
         return;
     }
 
@@ -53,25 +53,33 @@ async function anyadirProducto(codigo, descripcion, cantidad) {
 
         const data = await response.json();
         if (data.success) {
+            // Obtener la imagen del producto para extraer el nombre del archivo
+            const img = document.querySelector(`button[onclick*="${codigo}"]`)
+                ?.closest('.card')
+                ?.querySelector('img');
+            const imagePath = img?.getAttribute('src') || '';
+            const fileName = imagePath.substring(imagePath.lastIndexOf("/") + 1, imagePath.lastIndexOf("."));
+            
             const cantidadAnterior = carrito.get(codigoNum)?.cantidad || 0;
             carrito.set(codigoNum, {
-                descripcion: descripcion,
+                descripcion: fileName, // Guardamos el nombre del archivo para traducirlo después
                 cantidad: cantidadAnterior + cantidad
             });
             actualizarDropdownCarrito();
             limpiarInput();
             
-            // Mostrar notificación
-            const mensaje = cantidadAnterior === 0 
-                ? `Se ha añadido ${cantidad} unidad(es) de "${descripcion}" al carrito`
-                : `Se ha actualizado la cantidad de "${descripcion}" a ${cantidadAnterior + cantidad} unidades`;
+            // Mostrar notificación traducida
+            const mensajeKey = cantidadAnterior === 0 ? "productoAnyadido" : "cantidadActualizada";
+            const mensaje = t(mensajeKey)
+                .replace("{cantidad}", cantidadAnterior + cantidad)
+                .replace("{descripcion}", t(fileName));
             showNotification(mensaje);
         } else {
             alert(data.message);
         }
     } catch (error) {
         console.error('Error:', error);
-        alert('Error al añadir el producto al carrito');
+        alert(t("errorAnyadirProducto"));
     }
 }
 
@@ -144,14 +152,15 @@ function actualizarDropdownCarrito() {
     dropdownMenu.innerHTML = "";
     
     if (carrito.size === 0) {
-        dropdownMenu.innerHTML = '<a class="dropdown-item" href="#">Vacío</a>';
+        dropdownMenu.innerHTML = `<a class="dropdown-item" href="#" data-i18n="vacio">${t("vacio")}</a>`;
     } else {
         carrito.forEach((producto, codigo) => {
             const item = document.createElement("a");
             item.classList.add("dropdown-item");
             
             const productoInfo = document.createElement("span");
-            productoInfo.textContent = `${producto.descripcion} (x${producto.cantidad})`;
+            // Usar la traducción del nombre del producto
+            productoInfo.textContent = `${t(producto.descripcion)} (x${producto.cantidad})`;
             item.appendChild(productoInfo);
             
             const botonesContainer = document.createElement("div");
@@ -160,6 +169,7 @@ function actualizarDropdownCarrito() {
             const btnDisminuir = document.createElement("button");
             btnDisminuir.textContent = "−";
             btnDisminuir.classList.add("btn", "btn-sm", "btn-decrease", "ms-2");
+            btnDisminuir.setAttribute("title", t("disminuirCantidad"));
             btnDisminuir.onclick = (e) => {
                 e.preventDefault();
                 disminuirCantidad(codigo);
@@ -168,6 +178,7 @@ function actualizarDropdownCarrito() {
             const btnEliminar = document.createElement("button");
             btnEliminar.textContent = "❌";
             btnEliminar.classList.add("btn", "btn-sm", "btn-danger", "ms-2");
+            btnEliminar.setAttribute("title", t("eliminarProducto"));
             btnEliminar.onclick = (e) => {
                 e.preventDefault();
                 eliminarProducto(codigo);
@@ -180,7 +191,6 @@ function actualizarDropdownCarrito() {
         });
     }
 
-    // Emitir evento de actualización del carrito
     window.carrito = carrito;
     document.dispatchEvent(new Event('carritoActualizado'));
 }

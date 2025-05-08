@@ -18,24 +18,23 @@
     <mi-menu></mi-menu>
     <div class="container">
       <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="mb-0">Nuestros Productos</h1>
+        <h1 class="mb-0" data-i18n="nuestrosProductos">Nuestros Productos</h1>
         <div class="dropdown-container">
           <select class="form-select categoria-select" id="categoriaSelect" onchange="cambiarCategoria(this.value)">
-            <option value="0">Todas las categorías</option>
+            <option value="0" data-i18n="todasCategorias">Todas las categorías</option>
             <% 
               AccesoBD con = AccesoBD.getInstance();
               List<Map<String, Object>> categorias = con.obtenerCategorias();
               for (Map<String, Object> categoria : categorias) {
                 int codigo = (Integer) categoria.get("codigo");
-                String descripcion = (String) categoria.get("descripcion");
             %>
-                <option value="<%= codigo %>"<%= (request.getParameter("categoria") != null && Integer.parseInt(request.getParameter("categoria")) == codigo ? " selected" : "") %>><%= descripcion %></option>
+                <option value="<%= codigo %>" data-i18n="categoria_<%= codigo %>"><%= categoria.get("descripcion") %></option>
             <% } %>
           </select>
         </div>
       </div>
       <div class="search-container mb-4">
-        <input type="search" class="form-control" id="searchBar" placeholder="Buscar cuadros..." value="<%= request.getParameter("busqueda") != null ? request.getParameter("busqueda") : "" %>">
+        <input type="search" class="form-control" id="searchBar" data-i18n="buscarCuadros" placeholder="Buscar cuadros..." value="<%= request.getParameter("busqueda") != null ? request.getParameter("busqueda") : "" %>">
       </div>
       <div class="row g-4">
         <% 
@@ -74,14 +73,14 @@
           <div class="card shadow-sm producto-mancha h-100 d-flex flex-column align-items-center">
             <img src="<%= imagen %>" class="card-img-top img-fluid p-3" alt="<%= descripcion %>">
             <div class="card-body text-center">
-              <h5 class="card-title"><%= descripcion %></h5>
+              <h5 class="card-title" data-i18n="<%= imagen.substring(imagen.lastIndexOf("/") + 1, imagen.lastIndexOf(".")) %>"><%= descripcion %></h5>
               <p class="card-text"><%= precio %>€</p>
               <div class="input-group">
                 <% if (existencias > 0) { %>
                   <input type="number" class="form-control" placeholder="0" min="0" max="<%= existencias %>" id="cantidadProducto<%=i%>">
-                  <button class="btn btn-primary" type="button" onclick="anyadirProducto('<%=codigo%>', '<%=descripcion%>', parseInt(document.getElementById('cantidadProducto<%=i%>').value))">Comprar</button>
+                  <button class="btn btn-primary" type="button" onclick="anyadirProducto('<%=codigo%>', '<%=descripcion%>', parseInt(document.getElementById('cantidadProducto<%=i%>').value))" data-i18n="comprar">Comprar</button>
                 <% } else { %>
-                  <p class="text-danger">Sin stock</p>
+                  <p class="text-danger" data-i18n="sinStock">Sin stock</p>
                 <% } %>
               </div>
             </div>
@@ -104,12 +103,12 @@
         %>
             <nav aria-label="Navegación de páginas" class="mt-4">
               <div class="d-flex justify-content-between align-items-center">
-                <p class="mb-0">Página <%= paginaActual %> de <%= totalPaginas %></p>
+                <p class="mb-0"><span data-i18n="pagina">Página</span> <%= paginaActual %> <span data-i18n="de">de</span> <%= totalPaginas %></p>
                 <ul class="pagination mb-0">
                   <% if (paginaActual > 1) { %>
                     <li class="page-item">
                       <a class="page-link" href="?categoria=<%= categoria %>&pagina=<%= paginaActual - 1 %>" aria-label="Anterior">
-                        <span aria-hidden="true">&laquo;</span>
+                        <span aria-hidden="true" data-i18n="anterior">&laquo;</span>
                       </a>
                     </li>
                   <% } %>
@@ -143,7 +142,7 @@
                   <% if (paginaActual < totalPaginas) { %>
                     <li class="page-item">
                       <a class="page-link" href="?categoria=<%= categoria %>&pagina=<%= paginaActual + 1 %>" aria-label="Siguiente">
-                        <span aria-hidden="true">&raquo;</span>
+                        <span aria-hidden="true" data-i18n="siguiente">&raquo;</span>
                       </a>
                     </li>
                   <% } %>
@@ -194,3 +193,4 @@
     </script>
   </body>
 </html>
+``` 
