@@ -1,0 +1,107 @@
+.container {
+    flex: 1;
+}
+.text-group p {
+    font-weight: bold;
+}
+h1{
+    color:rgb(163, 104, 104) !important;
+}
+.painting-name {
+    margin-block: 4px;
+    background-color: rgb(175, 174, 174);
+    padding-inline: 10px;
+    padding-block: 2px;
+    text-align: left;
+    color: white;
+    width: 215px;
+    cursor: pointer;
+}
+.painting-name:hover {
+    text-decoration: underline;
+    color : rgb(214, 212, 212);
+}
+.btn-primary{
+    background-color: rgb(248, 158, 188) !important;
+    color: white !important;
+    border: none !important;
+}
+.btn-primary:hover{
+    background-color: rgb(160, 65, 97) !important;
+    color: white !important;
+}
+img{
+    width: 200px !important;
+    height: 200px !important;
+    cursor: pointer !important;
+    object-fit: cover;
+}
+body{
+    background-color: rgb(235, 213, 186) !important;
+    font-family: "Outfit", serif !important;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    color: rgb(163, 104, 104) !important;
+    
+}
+
+form label{
+    color: black !important;
+    font-weight: bold;
+}
+.my-row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    align-items: stretch;
+}
+.page-panel{
+    background-color: white;
+    font-family: "Outfit", serif;
+    border-radius: 2%;
+    box-shadow: 0 4px 8px rgb(158, 143, 143);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    padding: 2px;
+}
+.page-panel:hover{
+    box-shadow: 0 8px 14px rgb(133, 120, 120);
+}
+.iframe-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10%;
+    margin-top: 20px;
+}
+
+info{
+    color: black;
+    font-weight: bold;
+}
+.alberto-gombau img {
+    width: 10% !important;
+    height: 15% !important;
+    object-fit: cover !important;
+    object-position: top !important;
+}
+.carousel-item {
+    height: 300px !important;
+}
+.card-img-top {
+    width: 100% !important;
+    height: auto;
+}
+.carousel-control-prev-icon, .carousel-control-next-icon {
+    background-color: black;
+}
+.alert{
+    z-index: 1050 !important;
+}

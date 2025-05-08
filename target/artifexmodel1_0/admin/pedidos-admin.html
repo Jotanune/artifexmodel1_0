@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="./img/artifex.png" type="image/png">
+  <title>Artifex</title>
+  <link rel="stylesheet" href="./styles/menu.css">
+  <link rel="stylesheet" href="./styles/footer.css">
+  <link rel="stylesheet" href="./styles/body.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@100..1000&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+<mi-menu></mi-menu>
+<div class="container">
+  <h1 class="text-center mb-4">Gestión de Pedidos</h1>
+  <div class="mb-3">
+    <input type="text" class="form-control" id="buscarPedido" placeholder="Buscar pedido por comprador..." onkeyup="buscarPedido()">
+  </div>
+  <table class="table table-striped table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th>ID Pedido</th>
+        <th>Comprador</th>
+        <th>Productos</th>
+        <th>Total</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody id="tablaPedidos">
+      <tr>
+        <td>001</td>
+        <td>Juan Pérez</td>
+        <td>
+          <ul>
+            <li>El grito - 1 unidad - 300€</li>
+            <li>La noche estrellada - 2 unidades - 500€</li>
+          </ul>
+        </td>
+        <td>800€</td>
+        <td><span class="badge bg-warning">Pendiente</span></td>
+        <td>
+          <button class="btn btn-success btn-sm" onclick="cambiarEstado(this, 'Completado')">Completar</button>
+          <button class="btn btn-danger btn-sm" onclick="cambiarEstado(this, 'Cancelado')">Cancelar</button>
+        </td>
+      </tr>
+      <tr>
+        <td>002</td>
+        <td>Maria López</td>
+        <td>
+          <ul>
+            <li>La joven de la perla - 2 unidades - 800€</li>
+            <li>El beso - 1 unidad - 400€</li>
+          </ul>
+        </td>
+        <td>1200€</td>
+        <td><span class="badge bg-warning">Pendiente</span></td>
+        <td>
+          <button class="btn btn-success btn-sm" onclick="cambiarEstado(this, 'Completado')">Completar</button>
+          <button class="btn btn-danger btn-sm" onclick="cambiarEstado(this, 'Cancelado')">Cancelar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<hr>
+<mi-footer></mi-footer>
+<script src="./scripts/pedidos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="./scripts/footer.js"></script>
+<script src="./scripts/menu-admin.js"></script>
+</body>
+</html>

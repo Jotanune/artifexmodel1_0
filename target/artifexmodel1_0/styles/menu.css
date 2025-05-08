@@ -1,0 +1,423 @@
+:root {
+    /* Light theme (default) */
+    --menu-active-line: var(--text-primary);
+    --dropdown-before-bg: rgba(255, 255, 255, 0.98);
+    --dropdown-before-shadow: rgba(44, 44, 44, 0.02);
+    --danger-hover-bg: rgba(220, 53, 69, 0.1);
+    --danger-hover-color: #dc3545;
+}
+
+[data-theme="dark"] {
+    --menu-active-line: var(--text-primary);
+    --dropdown-before-bg: rgba(44, 44, 44, 0.98);
+    --dropdown-before-shadow: rgba(0, 0, 0, 0.1);
+    --danger-hover-bg: rgba(220, 53, 69, 0.2);
+    --danger-hover-color: #ff4554;
+}
+
+.custom-navbar {
+    background-color: var(--bg-primary) !important;
+    box-shadow: 0 2px 15px var(--shadow-color);
+    padding: 0.8rem 2rem !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 1030 !important;
+    width: 100% !important;
+}
+
+#navbar {
+    transition: all 0.3s ease;
+}
+
+.navbar-brand {
+    font-family: "Outfit", sans-serif;
+    font-size: 1.5em !important;
+    color: var(--text-primary) !important;
+    padding: 8px 12px;
+    position: relative;
+    overflow: hidden;
+}
+
+.navbar-brand::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--text-primary);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.navbar-brand:hover::after {
+    transform: scaleX(1);
+}
+
+#userImg {
+    width: 35px !important;
+    height: 35px !important;
+    border-radius: 50%;
+    filter: none !important;
+    border: 1px solid var(--border-color);
+    transition: transform 0.2s ease;
+}
+
+#userImg:hover {
+    transform: scale(1.05);
+}
+
+#userImg.logged-in {
+    margin-right: 12px;
+    vertical-align: middle;
+}
+
+.usuario-nombre {
+    color: var(--text-primary) !important;
+    font-size: 1.1em;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+
+.user-dropdown {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dropdown-menu {
+    background: var(--bg-primary) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 8px 30px rgba(44, 44, 44, 0.08) !important;
+    padding: 0.8rem 0.4rem !important;
+    margin-top: 15px !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    opacity: 0;
+    transform: translateY(-10px) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+}
+
+/* Estilos para el botón de eliminar del carrito */
+.dropdown-item .btn-danger {
+    background: transparent !important;
+    border: none !important;
+    padding: 2px 8px !important;
+    font-size: 0.9rem !important;
+    color: rgba(44, 44, 44, 0.6) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    margin-left: 8px !important;
+    border-radius: 50% !important;
+    line-height: 1 !important;
+    transform: scale(0.9) !important;
+}
+
+.dropdown-item .btn-danger:hover {
+    background: var(--danger-hover-bg) !important;
+    color: var(--danger-hover-color) !important;
+    transform: scale(1.1) !important;
+}
+
+.dropdown-item .btn-danger:active {
+    transform: scale(0.95) !important;
+}
+
+/* Estilos para los botones del carrito */
+.botones-carrito {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.btn-decrease {
+    background: transparent !important;
+    border: none !important;
+    padding: 2px 8px !important;
+    font-size: 1.2rem !important;
+    color: rgba(44, 44, 44, 0.6) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    border-radius: 50% !important;
+    line-height: 1 !important;
+    transform: scale(0.9) !important;
+    font-weight: bold !important;
+}
+
+.btn-decrease:hover {
+    background: var(--hover-bg) !important;
+    color: var(--text-primary) !important;
+    transform: scale(1.1) !important;
+}
+
+.btn-decrease:active {
+    transform: scale(0.95) !important;
+}
+
+[data-theme="dark"] .btn-decrease {
+    color: rgba(255, 255, 255, 0.6) !important;
+}
+
+[data-theme="dark"] .btn-decrease:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: #ffffff !important;
+}
+
+/* Ajustes para el item del carrito */
+.dropdown-menu .dropdown-item {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 0.7rem 1.2rem !important;
+    gap: 8px !important;
+}
+
+.dropdown-item span {
+    white-space: normal !important;
+    flex: 1 !important;
+}
+
+.dropdown-menu .dropdown-item:hover .btn-danger {
+    color: rgba(44, 44, 44, 0.8) !important;
+}
+
+.dropdown-menu.show {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+.dropdown-menu::before {
+    content: '' !important;
+    position: absolute !important;
+    top: -6px !important;
+    right: 20px !important;
+    width: 12px !important;
+    height: 12px !important;
+    background: var(--dropdown-before-bg) !important;
+    transform: rotate(45deg) !important;
+    border-radius: 2px !important;
+    box-shadow: -3px -3px 5px var(--dropdown-before-shadow) !important;
+}
+
+.dropdown-item {
+    color: var(--text-secondary) !important;
+    font-size: 0.95rem !important;
+    font-weight: 500 !important;
+    padding: 0.7rem 1.2rem !important;
+    margin: 0.2rem 0.4rem !important;
+    border-radius: 8px !important;
+    transition: all 0.25s ease !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.dropdown-item:hover {
+    background: var(--hover-bg) !important;
+    color: var(--text-primary) !important;
+    transform: translateX(5px) !important;
+}
+
+.dropdown-item:active {
+    background: rgba(44, 44, 44, 0.1) !important;
+    transform: scale(0.98) translateX(5px) !important;
+}
+
+.dropdown-item::before {
+    content: '' !important;
+    position: absolute !important;
+    left: 0 !important;
+    top: 50% !important;
+    height: 5px !important;
+    width: 5px !important;
+    border-radius: 50% !important;
+    background: var(--text-muted) !important;
+    transform: translateY(-50%) !important;
+    opacity: 0 !important;
+    transition: all 0.3s ease !important;
+}
+
+.dropdown-item:hover::before {
+    opacity: 1 !important;
+    left: 8px !important;
+}
+
+.dropdown-divider {
+    border-top: 1px solid var(--border-color) !important;
+    margin: 0.5rem 0.8rem !important;
+}
+
+/* Ajustes para el dropdown en modo oscuro o fondos oscuros */
+.dropdown-menu-dark {
+    background: rgba(44, 44, 44, 0.95) !important;
+}
+
+.dropdown-menu-dark .dropdown-item {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.dropdown-menu-dark .dropdown-item:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: #ffffff !important;
+}
+
+.dropdown-menu-dark .dropdown-divider {
+    border-top-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+#exitImg {
+    width: 25px !important;
+    height: 25px !important;
+    filter: none !important;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+#exitImg:hover {
+    opacity: 1;
+}
+
+.active {
+    font-weight: 600 !important;
+    position: relative;
+}
+
+.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--menu-active-line);
+}
+
+.nav-link {
+    color: var(--text-primary) !important;
+    transition: all 0.3s ease;
+    padding: 5px 15px !important;
+    margin: 0 5px;
+}
+
+.nav-link:hover {
+    color: var(--text-primary) !important;
+    transform: translateY(-1px);
+}
+
+mi-menu {
+    padding-bottom: 60px;
+}
+
+/* Añadiendo el theme switch */
+.theme-switch {
+    position: relative;
+    width: 60px;
+    height: 30px;
+    margin-left: 15px;
+}
+
+.theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--bg-secondary);
+    transition: .4s;
+    border-radius: 30px;
+    border: 1px solid var(--border-color);
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 22px;
+    left: 4px;
+    bottom: 3px;
+    background-color: var(--text-primary);
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider:before {
+    transform: translateX(29px);
+}
+
+/* Iconos del theme switch */
+.slider:after {
+    content: "🌙";
+    position: absolute;
+    left: 8px;
+    top: 4px;
+    font-size: 14px;
+    opacity: 0;
+    transition: .4s;
+}
+
+.slider:before {
+    content: "☀️";
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: var(--bg-primary);
+}
+
+input:checked + .slider:after {
+    opacity: 1;
+}
+
+/* Estilos para el selector de idioma */
+.language-switch {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    margin-left: 15px;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+}
+
+.language-switch:hover {
+    background-color: var(--hover-bg);
+}
+
+.language-switch img {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+
+.language-switch span {
+    color: var(--text-primary);
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.language-options {
+    min-width: unset !important;
+    width: auto !important;
+    padding: 0.5rem !important;
+}
+
+.language-option {
+    display: flex !important;
+    align-items: center !important;
+    padding: 0.5rem 1rem !important;
+}
+
+.language-option img {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+}

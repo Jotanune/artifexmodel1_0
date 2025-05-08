@@ -1,0 +1,14 @@
+tienda\ProductoBD.class
+tienda\servlets\GetUserInfoServlet.class
+tienda\servlets\ActualizarUsuarioServlet.class
+tienda\servlets\LoginServlet.class
+tienda\servlets\RegisterServlet.class
+tienda\servlets\LimpiarCarritoServlet.class
+tienda\UsuarioBD.class
+tienda\servlets\LogoutServlet.class
+tienda\AccesoBD.class
+tienda\servlets\CarritoServlet.class
+tienda\servlets\CheckSessionServlet.class
+tienda\servlets\CompraServlet.class
+tienda\servlets\ObtenerPedidosServlet.class
+tienda\listeners\SessionListener.class

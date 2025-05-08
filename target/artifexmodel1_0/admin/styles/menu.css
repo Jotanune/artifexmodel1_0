@@ -1,0 +1,32 @@
+.custom-navbar{
+    background-color: palevioletred;
+    color: white;
+}
+#navbar{
+    transition: transform 0.3s ease-in-out;
+}
+.navbar-brand{
+    font-family: "Outfit", serif;
+    font-size: 1.3em;
+    background-color: bisque;
+    padding: 5px;
+    border-radius: 5px;
+    color:rgb(163, 104, 104) !important;
+}
+#userImg{
+    width: 30px !important;
+    height: 30px !important;
+    border-radius: 50%;
+    filter: invert(1);
+}
+#exitImg{
+    width: 30px !important;
+    height: 30px !important;
+    filter: invert(1) !important;
+}
+.active{
+    font-weight: bold !important;
+}
+mi-menu{
+    padding-bottom: 80px;
+}

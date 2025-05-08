@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="./img/artifex.png" type="image/png">
+    <title>Artifex</title>
+    <link rel="stylesheet" href="./styles/menu.css">
+    <link rel="stylesheet" href="./styles/footer.css">
+    <link rel="stylesheet" href="./styles/body.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+  </head>
+
+  <body>
+    <mi-menu></mi-menu>
+    
+    <div class="container">
+      <section class="about-section">
+        <h1 class="text-center">Sobre Nosotros</h1>
+        <p class="about-intro">En Artifex, nos apasiona el arte y creemos que un cuadro puede transformar cualquier espacio. Desde pinturas clásicas hasta arte moderno, ofrecemos una amplia variedad de cuadros para todos los gustos y presupuestos, manteniendo siempre la más alta calidad en nuestros productos.</p>
+        
+        <div class="row mt-5 history-section">
+          <div class="col-md-6">
+            <h3>Nuestra Historia</h3>
+            <p>Artifex nació en 2020 con la visión de hacer el arte más accesible para todos. Lo que comenzó como una pequeña galería online se ha convertido en un referente en la venta de reproducciones artísticas de alta calidad. Nuestro compromiso con la excelencia y la autenticidad nos ha permitido crecer y establecer relaciones duraderas con artistas y clientes de todo el mundo.</p>
+            <p>A lo largo de los años, hemos expandido nuestra colección para incluir obras de diferentes épocas y estilos, desde el Renacimiento hasta el arte contemporáneo, asegurando que cada pieza mantenga la esencia y calidad del original.</p>
+          </div>
+          <div class="col-md-6">
+            <img src="./img/museo.jpg" alt="Nuestra Historia" class="img-fluid">
+          </div>
+        </div>
+        
+        <div class="row mt-5 history-section">
+          <div class="col-md-6">
+            <h3>La Misión de Artifex</h3>
+            <p>Nuestra misión es democratizar el arte, haciendo que obras maestras de la historia del arte sean accesibles para todos. Nos esforzamos por:</p>
+            <ul>
+              <li>Ofrecer reproducciones de la más alta calidad</li>
+              <li>Mantener precios justos y competitivos</li>
+              <li>Proporcionar un excelente servicio al cliente</li>
+              <li>Educar sobre la historia y el valor del arte</li>
+            </ul>
+            <p>Creemos que el arte tiene el poder de inspirar, emocionar y transformar espacios, y trabajamos cada día para hacer realidad esta visión.</p>
+          </div>
+          <div class="col-md-6">
+            <img src="./img/arte.jpg" alt="Misión Artifex" class="img-fluid">
+          </div>
+        </div>
+
+        <div class="row mt-5 gallery-section">
+          <h3 class="text-center mb-4">Nuestra Colección Destacada</h3>
+          <div class="col-md-4">
+            <div class="card">
+              <img src="./img/rojo-amarillo-azul.jpg" class="card-img-top" alt="Arte Moderno" onclick="window.location.href = './productos.jsp'">
+              <div class="card-body">
+                <h5 class="card-title">Arte Moderno</h5>
+                <p class="card-text">Exploramos las vanguardias artísticas con reproducciones de obras que revolucionaron el arte del siglo XX.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card">
+              <img src="./img/nacimiento-venus.jpg" class="card-img-top" alt="Arte Clásico" onclick="window.location.href = './productos.jsp'">
+              <div class="card-body">
+                <h5 class="card-title">Arte Clásico</h5>
+                <p class="card-text">Obras maestras del Renacimiento y el Barroco que han definido la historia del arte occidental.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card">
+              <img src="./img/composition-8.jpg" class="card-img-top" alt="Arte Abstracto" onclick="window.location.href = './productos.jsp'">
+              <div class="card-body">
+                <h5 class="card-title">Arte Abstracto</h5>
+                <p class="card-text">Piezas que desafían la percepción tradicional y exploran nuevas formas de expresión artística.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-5 team-section">
+          <h3 class="text-center">Nuestro Equipo</h3>
+          <div class="col-md-12">
+            <div id="empleadosCarrusel" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <div class="team-member">
+                    <img src="./img/persona1.webp" class="rounded-circle" alt="Juan Pérez">
+                    <h5>Juan Pérez</h5>
+                    <p>Director de Galería</p>
+                    <p class="team-description">Experto en arte con más de 15 años de experiencia en el sector.</p>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <div class="team-member alberto-gombau">
+                    <img src="./img/persona2.webp" class="rounded-circle" alt="Alberto Gombáu">
+                    <h5>Alberto Gombáu</h5>
+                    <p>Diseñador de Interiores</p>
+                    <p class="team-description">Especialista en crear espacios armoniosos con arte.</p>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <div class="team-member">
+                    <img src="./img/persona3.webp" class="rounded-circle" alt="Carlos Fernández">
+                    <h5>Carlos Fernández</h5>
+                    <p>Asesor de Arte</p>
+                    <p class="team-description">Guía experto en selección de obras para cada espacio y presupuesto.</p>
+                  </div>
+                </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#empleadosCarrusel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#empleadosCarrusel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Siguiente</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    
+    <hr>
+    <mi-footer></mi-footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="./scripts/menu.js"></script>
+    <script src="./scripts/footer.js"></script>
+    <script src="./scripts/carrito.js"></script>
+  </body>
+</html>
