@@ -27,8 +27,9 @@
               List<Map<String, Object>> categorias = con.obtenerCategorias();
               for (Map<String, Object> categoria : categorias) {
                 int codigo = (Integer) categoria.get("codigo");
+                String descripcion = (String) categoria.get("descripcion");
             %>
-                <option value="<%= codigo %>" data-i18n="categoria_<%= codigo %>"><%= categoria.get("descripcion") %></option>
+            <option value="<%= codigo %>" data-i18n="categoria_<%= codigo %>"<%= (request.getParameter("categoria") != null && Integer.parseInt(request.getParameter("categoria")) == codigo ? " selected" : "") %>><%= descripcion %></option>
             <% } %>
           </select>
         </div>
@@ -193,4 +194,3 @@
     </script>
   </body>
 </html>
-``` 
