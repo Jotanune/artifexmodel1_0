@@ -1243,6 +1243,6 @@ input[type="range"]::-webkit-slider-thumb:hover {
     }
 }
 
-#baseTitle{
+#heroTitle{
     color: var(--bg-primary) !important;
 }

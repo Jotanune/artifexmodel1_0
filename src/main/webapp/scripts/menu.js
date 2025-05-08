@@ -63,21 +63,11 @@ class Menu extends HTMLElement {
                                 <a class="dropdown-item" href="#">Vacío</a>
                             </div>
                         </li>
-                        <li class="nav-item dropdown">
-                            <div class="language-switch" data-bs-toggle="dropdown">
+                        <li class="nav-item">
+                            <button class="language-switch">
                                 <img src="./img/es.png" alt="Español" id="currentFlag">
                                 <span id="currentLang">ES</span>
-                            </div>
-                            <div class="dropdown-menu dropdown-menu-end language-options">
-                                <a class="dropdown-item language-option" href="#" data-lang="es">
-                                    <img src="./img/es.png" alt="Español">
-                                    <span>ES</span>
-                                </a>
-                                <a class="dropdown-item language-option" href="#" data-lang="en">
-                                    <img src="./img/uk.png" alt="English">
-                                    <span>UK</span>
-                                </a>
-                            </div>
+                            </button>
                         </li>
                     </ul>
                 </div>
@@ -131,21 +121,11 @@ class Menu extends HTMLElement {
                                 <a class="dropdown-item" href="#">Vacío</a>
                             </div>
                         </li>
-                        <li class="nav-item dropdown">
-                            <div class="language-switch" data-bs-toggle="dropdown">
+                        <li class="nav-item">
+                            <button class="language-switch">
                                 <img src="./img/es.png" alt="Español" id="currentFlag">
                                 <span id="currentLang">ES</span>
-                            </div>
-                            <div class="dropdown-menu dropdown-menu-end language-options">
-                                <a class="dropdown-item language-option" href="#" data-lang="es">
-                                    <img src="./img/es.png" alt="Español">
-                                    <span>ES</span>
-                                </a>
-                                <a class="dropdown-item language-option" href="#" data-lang="en">
-                                    <img src="./img/uk.png" alt="English">
-                                    <span>UK</span>
-                                </a>
-                            </div>
+                            </button>
                         </li>
                     </ul>
                 </div>
@@ -191,16 +171,17 @@ class Menu extends HTMLElement {
         const savedLang = localStorage.getItem('language') || this.getBrowserLanguage();
         this.setLanguage(savedLang);
 
-        const languageOptions = this.querySelectorAll('.language-option');
-        languageOptions.forEach(option => {
-            option.addEventListener('click', (e) => {
+        const languageSwitch = this.querySelector('.language-switch');
+        if (languageSwitch) {
+            languageSwitch.addEventListener('click', (e) => {
                 e.preventDefault();
-                const lang = option.getAttribute('data-lang');
-                this.setLanguage(lang);
-                localStorage.setItem('language', lang);
+                const currentLang = localStorage.getItem('language') || this.getBrowserLanguage();
+                const newLang = currentLang === 'es' ? 'en' : 'es';
+                this.setLanguage(newLang);
+                localStorage.setItem('language', newLang);
                 document.dispatchEvent(new Event('languageChanged'));
             });
-        });
+        }
     }
 
     getBrowserLanguage() {

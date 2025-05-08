@@ -19,9 +19,9 @@
     
     <div class="hero-section">
       <div class="container">
-        <h1 class="hero-title" id="baseTitle">Bienvenido a Artifex</h1>
-        <p class="hero-subtitle">Donde el arte cobra vida y transforma espacios</p>
-        <a href="productos.jsp" class="hero-cta">Explorar Colección</a>
+        <h1 class="hero-title" data-i18n="heroTitle">Bienvenido a Artifex</h1>
+        <p class="hero-subtitle" data-i18n="heroSubtitle">Donde el arte cobra vida y transforma espacios</p>
+        <a href="productos.jsp" class="hero-cta" data-i18n="explorarColeccion">Explorar Colección</a>
       </div>
     </div>
 
@@ -30,10 +30,10 @@
         <div class="row align-items-center">
           <div class="col-md-6">
             <div class="about-content">
-              <h2 class="section-title">Sobre Nosotros</h2>
-              <p class="section-text">En Artifex, nos apasiona el arte y creemos que un cuadro puede transformar cualquier espacio. Nuestra misión es hacer que el arte sea accesible para todos, ofreciendo una cuidadosa selección de obras que inspiran y cautivan.</p>
-              <p class="section-text">Desde pinturas clásicas hasta arte moderno, cada pieza en nuestra colección ha sido elegida por su calidad y significado artístico.</p>
-              <a href="empresa.html" class="section-link">Conoce nuestra historia</a>
+              <h2 class="section-title" data-i18n="sobreNosotros">Sobre Nosotros</h2>
+              <p class="section-text" data-i18n="sobreNosotrosTexto">En Artifex, nos apasiona el arte y creemos que un cuadro puede transformar cualquier espacio. Nuestra misión es hacer que el arte sea accesible para todos, ofreciendo una cuidadosa selección de obras que inspiran y cautivan.</p>
+              <p class="section-text" data-i18n="sobreNosotrosTexto2">Desde pinturas clásicas hasta arte moderno, cada pieza en nuestra colección ha sido elegida por su calidad y significado artístico.</p>
+              <a href="empresa.html" class="section-link" data-i18n="conoceHistoria">Conoce nuestra historia</a>
             </div>
           </div>
           <div class="col-md-6">
@@ -45,26 +45,26 @@
       </section>
 
       <section id="featured" class="section-spacing">
-        <h2 class="section-title text-center">Obras Destacadas</h2>
+        <h2 class="section-title text-center" data-i18n="obrasDestacadas">Obras Destacadas</h2>
         <div class="featured-grid">
           <div class="featured-item">
             <img src="img/guernica.jpg" alt="Guernica" class="featured-image">
             <div class="featured-overlay">
-              <h3>Guernica</h3>
+              <h3 data-i18n="guernica">Guernica</h3>
               <p>Pablo Picasso</p>
             </div>
           </div>
           <div class="featured-item">
             <img src="img/noche.jpg" alt="La noche estrellada" class="featured-image">
             <div class="featured-overlay">
-              <h3>La noche estrellada</h3>
+              <h3 data-i18n="nocheestrellada">La noche estrellada</h3>
               <p>Vincent van Gogh</p>
             </div>
           </div>
           <div class="featured-item">
             <img src="img/persistencia.jpg" alt="La persistencia de la memoria" class="featured-image">
             <div class="featured-overlay">
-              <h3>La persistencia de la memoria</h3>
+              <h3 data-i18n="persistenciamemoria">La persistencia de la memoria</h3>
               <p>Salvador Dalí</p>
             </div>
           </div>
@@ -72,64 +72,64 @@
       </section>
 
       <section id="categories" class="section-spacing">
-        <h2 class="section-title text-center">Explora Nuestras Categorías</h2>
+        <h2 class="section-title text-center" data-i18n="explorarCategorias">Explora Nuestras Categorías</h2>
         <div class="categories-grid">
           <a href="productos.jsp?categoria=2" class="category-card">
             <div class="category-content">
-              <h3>Arte Barroco</h3>
-              <p>Obras maestras de los grandes maestros</p>
+              <h3 data-i18n="arteBarroco">Arte Barroco</h3>
+              <p data-i18n="arteBarrocoDesc">Obras maestras de los grandes maestros</p>
             </div>
           </a>
           <a href="productos.jsp?categoria=5" class="category-card">
             <div class="category-content">
-              <h3>Arte Renacentista</h3>
-              <p>Expresiones renacentistas del arte</p>
+              <h3 data-i18n="arteRenacentista">Arte Renacentista</h3>
+              <p data-i18n="arteRenacentDesc">Expresiones renacentistas del arte</p>
             </div>
           </a>
           <a href="productos.jsp?categoria=6" class="category-card">
             <div class="category-content">
-              <h3>Surrealismo</h3>
-              <p>Capturando la luz y el momento</p>
+              <h3 data-i18n="surrealismo">Surrealismo</h3>
+              <p data-i18n="surrealismoDesc">Capturando la luz y el momento</p>
             </div>
           </a>
         </div>
       </section>
 
       <section id="testimonials" class="section-spacing">
-        <h2 class="section-title text-center">Opiniones de Nuestros Clientes</h2>
+        <h2 class="section-title text-center" data-i18n="testimoniosTitle">Opiniones de Nuestros Clientes</h2>
         <div class="testimonials-grid">
           <div class="testimonial-card">
             <div class="testimonial-content">
-              <p>"Artifex transformó mi sala con una pintura increíble. El proceso de selección y compra fue impecable."</p>
+              <p data-i18n="testimonio1">"Artifex transformó mi sala con una pintura increíble. El proceso de selección y compra fue impecable."</p>
               <div class="testimonial-author">
                 <img src="img/persona1.webp" alt="María López" class="testimonial-avatar">
                 <div>
-                  <h4>Mario López</h4>
-                  <span>Cliente desde 2023</span>
+                  <h4 data-i18n="nombreTestimonio1">Mario López</h4>
+                  <span><span data-i18n="clienteDesde">Cliente desde</span> 2023</span>
                 </div>
               </div>
             </div>
           </div>
           <div class="testimonial-card">
             <div class="testimonial-content">
-              <p>"La calidad de las obras y la atención al cliente son excepcionales. Cada visita a la galería es una experiencia única."</p>
+              <p data-i18n="testimonio2">"La calidad de las obras y la atención al cliente son excepcionales. Cada visita a la galería es una experiencia única."</p>
               <div class="testimonial-author">
                 <img src="img/persona2.webp" alt="Carlos Martínez" class="testimonial-avatar">
                 <div>
-                  <h4>Carlos Martínez</h4>
-                  <span>Cliente desde 2022</span>
+                  <h4 data-i18n="nombreTestimonio2">Carlos Martínez</h4>
+                  <span><span data-i18n="clienteDesde">Cliente desde</span> 2022</span>
                 </div>
               </div>
             </div>
           </div>
           <div class="testimonial-card">
             <div class="testimonial-content">
-              <p>"El cuadro personalizado que pedí superó todas mis expectativas. El equipo de Artifex entendió perfectamente mi visión."</p>
+              <p data-i18n="testimonio3">"El cuadro personalizado que pedí superó todas mis expectativas. El equipo de Artifex entendió perfectamente mi visión."</p>
               <div class="testimonial-author">
-                <img src="img/persona3.webp" alt="Laura Gómez" class="testimonial-avatar">
+                <img src="img/persona3.webp" alt="Luis Gómez" class="testimonial-avatar">
                 <div>
-                  <h4>Luis Gómez</h4>
-                  <span>Cliente desde 2024</span>
+                  <h4 data-i18n="nombreTestimonio3">Luis Gómez</h4>
+                  <span><span data-i18n="clienteDesde">Cliente desde</span> 2024</span>
                 </div>
               </div>
             </div>
@@ -139,9 +139,9 @@
 
       <section id="contact-preview" class="section-spacing">
         <div class="contact-preview-content text-center">
-          <h2 class="section-title">¿Tienes alguna pregunta?</h2>
-          <p class="section-text">Estamos aquí para ayudarte a encontrar la obra perfecta para tu espacio</p>
-          <a href="contacto.html" class="contact-cta">Contáctanos</a>
+          <h2 class="section-title" data-i18n="preguntaTitle">¿Tienes alguna pregunta?</h2>
+          <p class="section-text" data-i18n="preguntaDesc">Estamos aquí para ayudarte a encontrar la obra perfecta para tu espacio</p>
+          <a href="contacto.html" class="contact-cta" data-i18n="contactanos">Contáctanos</a>
         </div>
       </section>
     </div>
@@ -154,5 +154,7 @@
     <script src="./scripts/footer.js"></script>
     <script src="./scripts/carrito.js"></script>
     <script src="./scripts/imagen.js"></script>
+    <script src="./scripts/translations.js"></script>
+    <script src="./scripts/i18n.js"></script>
   </body>
 </html>
