@@ -30,8 +30,11 @@
   </head>
   <body>
     <mi-menu></mi-menu>
-    
-    <div class="container my-5">
+      <div class="container my-5">
+      <a href="productos.jsp" class="btn-back mb-4">
+        <i class="bi bi-arrow-left"></i>
+        <span>Volver a productos</span>
+      </a>
       <% 
         ProductoBD producto = (ProductoBD)request.getAttribute("producto");
         if (producto != null) {

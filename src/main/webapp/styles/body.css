@@ -54,6 +54,36 @@
     --checkbox-checked-bg: rgba(255, 255, 255, 0.9);
     --checkbox-checked-border: rgba(255, 255, 255, 0.9);
 }
+/* Estilos para el botón de volver */
+.btn-back {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    padding: 0.75rem 1.25rem !important;
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+    border-radius: 8px !important;
+    text-decoration: none !important;
+    transition: all 0.3s ease !important;
+    font-weight: 500 !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+.btn-back:hover {
+    background-color: var(--hover-bg) !important;
+    transform: translateX(-5px) !important;
+    color: var(--text-primary) !important;
+    text-decoration: none !important;
+}
+
+.btn-back i {
+    font-size: 1.25rem !important;
+    transition: transform 0.3s ease !important;
+}
+
+.btn-back:hover i {
+    transform: translateX(-3px) !important;
+}
 
 .container {
     flex: 1;
