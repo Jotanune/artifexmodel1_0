@@ -230,36 +230,56 @@
     <script src="./scripts/menu.js"></script>
     <script src="./scripts/footer.js"></script>
     <script src="./scripts/translations.js"></script>
-    <script src="./scripts/i18n.js"></script>
-    <script>
+    <script src="./scripts/i18n.js"></script>    <script>
         document.addEventListener('DOMContentLoaded', function() {
             const timelineMarker = document.querySelector('.timeline-marker');
             const timelineDates = document.querySelectorAll('.timeline-date');
             const sections = document.querySelectorAll('section');
+            const totalSections = sections.length;
             
-            function updateTimeline() {
-                const windowHeight = window.innerHeight;
-                const scrollPosition = window.scrollY;
-                const documentHeight = document.documentElement.scrollHeight - windowHeight;
-                const scrollPercentage = (scrollPosition / documentHeight) * 100;
-                
-                // Actualizar posición del marcador
-                timelineMarker.style.top = `${Math.min(85, Math.max(15, scrollPercentage))}%`;
-                
-                // Actualizar fechas activas
-                sections.forEach((section, index) => {
-                    const rect = section.getBoundingClientRect();
-                    const isVisible = rect.top < windowHeight/2 && rect.bottom > windowHeight/2;
-                    
-                    if (isVisible) {
-                        timelineDates.forEach(date => date.classList.remove('active'));
-                        timelineDates[index].classList.add('active');
+            // Función para mover el marcador a una sección específica
+            function moveMarkerToSection(index) {
+                const percentage = 15 + ((70 / (totalSections - 1)) * index);
+                timelineMarker.style.top = `${percentage}%`;
+                timelineDates.forEach(date => date.classList.remove('active'));
+                timelineDates[index].classList.add('active');
+            }
+
+            // Observador de Intersección para detectar secciones visibles
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const sectionIndex = Array.from(sections).indexOf(entry.target);
+                        moveMarkerToSection(sectionIndex);
                     }
                 });
-            }
+            }, {
+                threshold: 0.5
+            });
+
+            // Observar todas las secciones
+            sections.forEach(section => observer.observe(section));
+
+            // Hacer las fechas clickeables
+            timelineDates.forEach((date, index) => {
+                date.addEventListener('click', () => {
+                    const targetSection = sections[index];
+                    targetSection.scrollIntoView({ behavior: 'smooth' });
+                });
+
+                // Añadir estilo de cursor pointer
+                date.style.cursor = 'pointer';
+            });
+
+            // Inicializar posición
+            const visibleSectionIndex = Array.from(sections).findIndex(section => {
+                const rect = section.getBoundingClientRect();
+                return rect.top <= window.innerHeight/2 && rect.bottom >= window.innerHeight/2;
+            });
             
-            window.addEventListener('scroll', updateTimeline);
-            updateTimeline(); // Inicializar posición
+            if (visibleSectionIndex >= 0) {
+                moveMarkerToSection(visibleSectionIndex);
+            }
         });
     </script>
 </body>
