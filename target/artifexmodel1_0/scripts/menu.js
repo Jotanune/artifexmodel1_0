@@ -30,9 +30,7 @@ class Menu extends HTMLElement {
             this.initializeThemeSwitch();
             translatePage();
         }
-    }
-
-    getDefaultMenu() {
+    }    getDefaultMenu() {
         return `
         <nav id="navbar" class="navbar navbar-expand-md navbar-dark custom-navbar fixed-top">
             <div class="container-fluid">
@@ -50,6 +48,9 @@ class Menu extends HTMLElement {
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="./productos.jsp" data-i18n="productos">Productos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./epocas.jsp" data-i18n="epocasArtisticas">Épocas Artísticas</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav ms-auto">
@@ -82,9 +83,7 @@ class Menu extends HTMLElement {
                 </div>
             </div>
         </nav>`;
-    }
-
-    getLoggedInMenu(usuario) {
+    }    getLoggedInMenu(usuario) {
         return `
         <nav id="navbar" class="navbar navbar-expand-md navbar-dark custom-navbar fixed-top">
             <div class="container-fluid">
@@ -102,6 +101,9 @@ class Menu extends HTMLElement {
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="./productos.jsp" data-i18n="productos">Productos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./epocas.jsp" data-i18n="epocasArtisticas">Épocas Artísticas</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav ms-auto">
