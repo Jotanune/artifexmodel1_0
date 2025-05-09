@@ -50,6 +50,18 @@
 <body class="epocas-page">
     <mi-menu></mi-menu>
 
+    <div class="timeline-bar">
+        <div class="timeline-line"></div>
+        <div class="timeline-marker"></div>
+        <div class="timeline-dates">
+            <div class="timeline-date" data-section="renacimiento">S. XV-XVI</div>
+            <div class="timeline-date" data-section="barroco">S. XVII-XVIII</div>
+            <div class="timeline-date" data-section="expresionismo">S. XIX-XX</div>
+            <div class="timeline-date" data-section="cubismo">S. XX</div>
+            <div class="timeline-date" data-section="surrealismo">1924-1966</div>
+        </div>
+    </div>
+
     <main>
         <!-- Renacimiento -->
         <section id="renacimiento" class="vh-100 d-flex align-items-center">
@@ -219,5 +231,36 @@
     <script src="./scripts/footer.js"></script>
     <script src="./scripts/translations.js"></script>
     <script src="./scripts/i18n.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const timelineMarker = document.querySelector('.timeline-marker');
+            const timelineDates = document.querySelectorAll('.timeline-date');
+            const sections = document.querySelectorAll('section');
+            
+            function updateTimeline() {
+                const windowHeight = window.innerHeight;
+                const scrollPosition = window.scrollY;
+                const documentHeight = document.documentElement.scrollHeight - windowHeight;
+                const scrollPercentage = (scrollPosition / documentHeight) * 100;
+                
+                // Actualizar posición del marcador
+                timelineMarker.style.top = `${Math.min(85, Math.max(15, scrollPercentage))}%`;
+                
+                // Actualizar fechas activas
+                sections.forEach((section, index) => {
+                    const rect = section.getBoundingClientRect();
+                    const isVisible = rect.top < windowHeight/2 && rect.bottom > windowHeight/2;
+                    
+                    if (isVisible) {
+                        timelineDates.forEach(date => date.classList.remove('active'));
+                        timelineDates[index].classList.add('active');
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', updateTimeline);
+            updateTimeline(); // Inicializar posición
+        });
+    </script>
 </body>
 </html>
