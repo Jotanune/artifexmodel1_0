@@ -35,9 +35,9 @@
         </div>
       </div>
       <div class="search-container mb-4">
-        <input type="search" class="form-control" id="searchBar" data-i18n="buscarCuadros" placeholder="Buscar cuadros..." value="<%= request.getParameter("busqueda") != null ? request.getParameter("busqueda") : "" %>">
+        <input type="search" class="form-control" id="searchBar" data-i18n="buscarCuadros" placeholder="Buscar cuadros..." autocomplete="off">
       </div>
-      <div class="row g-4">
+      <div class="row g-4" id="productosContainer">
         <% 
           String busqueda = request.getParameter("busqueda");
           List<ProductoBD> productos;
@@ -175,20 +175,18 @@
 
       document.addEventListener('DOMContentLoaded', function() {
         const searchBar = document.getElementById('searchBar');
-        let timeoutId;
-
+        const productosContainer = document.getElementById('productosContainer');
         searchBar.addEventListener('input', function() {
-          clearTimeout(timeoutId);
-          timeoutId = setTimeout(() => {
-            const query = searchBar.value.trim();
-            if (query !== '') {
-              window.location.href = 'productos.jsp?busqueda=' + encodeURIComponent(query);
+          const query = searchBar.value.trim().toLowerCase();
+          const cards = productosContainer.querySelectorAll('.card');
+          cards.forEach(card => {
+            const title = card.querySelector('.card-title').textContent.toLowerCase();
+            if (title.includes(query)) {
+              card.parentElement.style.display = '';
             } else {
-              // Si la búsqueda está vacía, volver a la vista normal
-              const categoria = document.getElementById('categoriaSelect').value;
-              window.location.href = 'productos.jsp?categoria=' + categoria;
+              card.parentElement.style.display = 'none';
             }
-          }, 500); // Esperar 500ms después de que el usuario deje de escribir
+          });
         });
       });
     </script>
