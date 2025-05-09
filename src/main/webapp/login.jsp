@@ -17,21 +17,21 @@
   <body>
     <mi-menu></mi-menu>
     <div class="container">
-      <h1 class="text-center">Inicia sesión</h1>
+      <h1 class="text-center" data-i18n="iniciarSesion">Inicia sesión</h1>
       <form id="loginForm" action="login" method="POST">
         <div class="mb-3">
-          <label class="form-label">Nombre de usuario</label>
+          <label class="form-label" data-i18n="nombreUsuario">Nombre de usuario</label>
           <input class="form-control" id="usuario" name="usuario" required>
         </div>
         <div class="mb-3">
-          <label for="clave" class="form-label">Contraseña</label>
+          <label for="clave" class="form-label" data-i18n="contrasena">Contraseña</label>
           <input type="password" class="form-control" id="clave" name="clave" required>
         </div>
-        <div id="loginError" class="alert alert-danger" style="display: none;">
+        <div id="loginError" class="alert alert-danger" style="display: none;" data-i18n="errorCredenciales">
           Usuario o contraseña incorrectos
         </div>
-        <button type="submit" class="btn btn-primary">Iniciar sesión</button>
-        <a href="./register.jsp" class="btn btn-link">¿No tienes cuenta? Regístrate</a>
+        <button type="submit" class="btn btn-primary" data-i18n="iniciarSesion">Iniciar sesión</button>
+        <a href="./register.jsp" class="btn btn-link" data-i18n="noTienesCuenta">¿No tienes cuenta? Regístrate</a>
       </form>
     </div>
     <hr>

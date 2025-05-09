@@ -23,101 +23,101 @@
   <mi-menu></mi-menu>
 
   <div class="container">
-    <h1 class="text-center">Crear cuenta</h1>
+    <h1 class="text-center" data-i18n="crearCuenta">Crear cuenta</h1>
     <form action="register" method="POST" id="registroForm" novalidate>
       <div class="mb-3">
-        <label for="usuario" class="form-label">Nombre de usuario</label>
+        <label for="usuario" class="form-label" data-i18n="nombreUsuario">Nombre de usuario</label>
         <input type="text" class="form-control" id="usuario" name="usuario" required>
-        <div class="invalid-feedback">El nombre de usuario es obligatorio.</div>
-        <div class="text-danger mt-1" id="usuarioError" style="display: none;">
+        <div class="invalid-feedback" data-i18n="usuarioObligatorio">El nombre de usuario es obligatorio.</div>
+        <div class="text-danger mt-1" id="usuarioError" style="display: none;" data-i18n="usuarioEnUso">
           Este nombre de usuario ya está en uso.
         </div>
       </div>
 
       <div class="row">
         <div class="col-md-6 mb-3">
-          <label for="nombre" class="form-label">Nombre</label>
+          <label for="nombre" class="form-label" data-i18n="nombre">Nombre</label>
           <input type="text" class="form-control" id="nombre" name="nombre" required>
-          <div class="invalid-feedback">El nombre es obligatorio.</div>
+          <div class="invalid-feedback" data-i18n="nombreObligatorio">El nombre es obligatorio.</div>
         </div>
         <div class="col-md-6 mb-3">
-          <label for="apellidos" class="form-label">Apellidos</label>
+          <label for="apellidos" class="form-label" data-i18n="apellidos">Apellidos</label>
           <input type="text" class="form-control" id="apellidos" name="apellidos" required>
-          <div class="invalid-feedback">Los apellidos son obligatorios.</div>
+          <div class="invalid-feedback" data-i18n="apellidosObligatorios">Los apellidos son obligatorios.</div>
         </div>
       </div>
 
       <div class="mb-3">
-        <label for="email" class="form-label">Correo electrónico</label>
+        <label for="email" class="form-label" data-i18n="correoElectronico">Correo electrónico</label>
         <input type="email" class="form-control" id="email" name="email" required>
-        <div class="invalid-feedback">Introduce un correo electrónico válido.</div>
-        <div class="text-danger mt-1" id="emailError" style="display: none;">
+        <div class="invalid-feedback" data-i18n="correoValido">Introduce un correo electrónico válido.</div>
+        <div class="text-danger mt-1" id="emailError" style="display: none;" data-i18n="correoRegistrado">
           Este correo electrónico ya está registrado.
         </div>
       </div>
 
       <div class="mb-3">
-        <label for="clave" class="form-label">Contraseña</label>
+        <label for="clave" class="form-label" data-i18n="contrasena">Contraseña</label>
         <input type="password" class="form-control" id="clave" name="clave" required maxlength="40"
                pattern="^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,40}$">
-        <div class="invalid-feedback">
+        <div class="invalid-feedback" data-i18n="contrasenaRequisitos">
           La contraseña debe tener entre 8 y 40 caracteres, una mayúscula, un número y un símbolo.
         </div>
-        <div class="text-danger mt-1" id="claveLengthError" style="display: none;">
+        <div class="text-danger mt-1" id="claveLengthError" style="display: none;" data-i18n="contrasenaLarga">
           La contraseña no puede superar los 40 caracteres.
         </div>
       </div>
 
       <div class="mb-3">
-        <label for="confirmPassword" class="form-label">Confirmar contraseña</label>
+        <label for="confirmPassword" class="form-label" data-i18n="confirmarContrasena">Confirmar contraseña</label>
         <input type="password" class="form-control" id="confirmPassword" required>
-        <div class="invalid-feedback">Las contraseñas no coinciden.</div>
+        <div class="invalid-feedback" data-i18n="contrasenasNoCoinciden">Las contraseñas no coinciden.</div>
       </div>
 
       <div class="mb-3">
-        <label for="domicilio" class="form-label">Domicilio *</label>
+        <label for="domicilio" class="form-label" data-i18n="domicilio">Domicilio *</label>
         <input type="text" class="form-control" id="domicilio" name="domicilio" required>
-        <div class="invalid-feedback">El domicilio es obligatorio.</div>
+        <div class="invalid-feedback" data-i18n="domicilioObligatorio">El domicilio es obligatorio.</div>
       </div>
 
       <div class="row">
         <div class="col-md-6 mb-3">
-          <label for="poblacion" class="form-label">Población *</label>
+          <label for="poblacion" class="form-label" data-i18n="poblacion">Población *</label>
           <input type="text" class="form-control" id="poblacion" name="poblacion" required>
-          <div class="invalid-feedback">La población es obligatoria.</div>
+          <div class="invalid-feedback" data-i18n="poblacionObligatoria">La población es obligatoria.</div>
         </div>
         <div class="col-md-6 mb-3">
-          <label for="provincia" class="form-label">Provincia *</label>
+          <label for="provincia" class="form-label" data-i18n="provincia">Provincia *</label>
           <input type="text" class="form-control" id="provincia" name="provincia" required>
-          <div class="invalid-feedback">La provincia es obligatoria.</div>
+          <div class="invalid-feedback" data-i18n="provinciaObligatoria">La provincia es obligatoria.</div>
         </div>
       </div>
 
       <div class="row">
         <div class="col-md-6 mb-3">
-          <label for="cp" class="form-label">Código Postal *</label>
+          <label for="cp" class="form-label" data-i18n="codigoPostal">Código Postal *</label>
           <input type="text" class="form-control" id="cp" name="cp" pattern="[0-9]{5}" required>
-          <div class="invalid-feedback">El código postal debe tener 5 dígitos.</div>
+          <div class="invalid-feedback" data-i18n="codigoPostalValido">El código postal debe tener 5 dígitos.</div>
         </div>
         <div class="col-md-6 mb-3">
-          <label for="telefono" class="form-label">Teléfono *</label>
+          <label for="telefono" class="form-label" data-i18n="telefono">Teléfono *</label>
           <input type="tel" class="form-control" id="telefono" name="telefono" pattern="[0-9]{9}" required>
-          <div class="invalid-feedback">El teléfono debe tener 9 dígitos.</div>
+          <div class="invalid-feedback" data-i18n="telefonoValido">El teléfono debe tener 9 dígitos.</div>
         </div>
       </div>
 
       <div class="mb-3 form-check">
         <input type="checkbox" class="form-check-input" id="terminos" required>
-        <label class="form-check-label" for="terminos">Acepto los términos y condiciones</label>
-        <div class="invalid-feedback">Debes aceptar los términos para registrarte.</div>
+        <label class="form-check-label" for="terminos" data-i18n="aceptarTerminos">Acepto los términos y condiciones</label>
+        <div class="invalid-feedback" data-i18n="aceptarTerminosObligatorio">Debes aceptar los términos para registrarte.</div>
       </div>
 
-      <div id="registerError" class="alert alert-danger" style="display: none;">
+      <div id="registerError" class="alert alert-danger" style="display: none;" data-i18n="errorRegistro">
         Error al registrar el usuario. Por favor, inténtalo de nuevo.
       </div>
 
-      <button type="submit" class="btn btn-primary">Registrarse</button>
-      <a href="login.jsp" class="btn btn-link">¿Ya tienes una cuenta? Inicia sesión</a>
+      <button type="submit" class="btn btn-primary" data-i18n="registrarse">Registrarse</button>
+      <a href="login.jsp" class="btn btn-link" data-i18n="yaTienesCuenta">¿Ya tienes una cuenta? Inicia sesión</a>
     </form>
   </div>
   <mi-footer></mi-footer>
