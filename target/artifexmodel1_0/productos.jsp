@@ -70,9 +70,10 @@
               String imagen = producto.getImagen();
         %>
         
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="card shadow-sm producto-mancha h-100 d-flex flex-column align-items-center">
-            <img src="<%= imagen %>" class="card-img-top img-fluid p-3" alt="<%= descripcion %>">
+        <div class="col-lg-3 col-md-4 col-sm-6">          <div class="card shadow-sm producto-mancha h-100 d-flex flex-column align-items-center">
+            <a href="detalle-producto?codigo=<%= codigo %>" class="text-decoration-none">
+              <img src="<%= imagen %>" class="card-img-top img-fluid p-3" alt="<%= descripcion %>">
+            </a>
             <div class="card-body text-center">
               <h5 class="card-title" data-i18n="<%= imagen.substring(imagen.lastIndexOf("/") + 1, imagen.lastIndexOf(".")) %>"><%= descripcion %></h5>
               <p class="card-text"><%= precio %>€</p>

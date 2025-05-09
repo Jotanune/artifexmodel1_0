@@ -49,14 +49,18 @@ async function anyadirProducto(codigo, descripcion, cantidad) {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
             body: `action=add&codigo=${codigoNum}&cantidad=${cantidad}`
-        });
-
-        const data = await response.json();
+        });        const data = await response.json();
         if (data.success) {
             // Obtener la imagen del producto para extraer el nombre del archivo
-            const img = document.querySelector(`button[onclick*="${codigo}"]`)
+            let img = document.querySelector(`button[onclick*="${codigo}"]`)
                 ?.closest('.card')
                 ?.querySelector('img');
+            
+            // Si no encontramos la imagen en una card (página de detalles), buscarla directamente
+            if (!img) {
+                img = document.querySelector('.obra-img');
+            }
+            
             const imagePath = img?.getAttribute('src') || '';
             const fileName = imagePath.substring(imagePath.lastIndexOf("/") + 1, imagePath.lastIndexOf("."));
             
