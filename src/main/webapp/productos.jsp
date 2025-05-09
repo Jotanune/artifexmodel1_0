@@ -35,7 +35,7 @@
         </div>
       </div>
       <div class="search-container mb-4">
-        <input type="search" class="form-control" id="searchBar" data-i18n="buscarCuadros" placeholder="Buscar cuadros..." autocomplete="off">
+        <input type="search" class="form-control" id="searchBar" data-i18n="buscarCuadros" placeholder="Buscar cuadros..." autocomplete="off" value="<%= (request.getParameter("busqueda") != null ? request.getParameter("busqueda") : "") %>">
       </div>
       <div class="row g-4" id="productosContainer">
         <% 
@@ -172,22 +172,20 @@
         const searchBar = document.getElementById('searchBar');
         searchBar.value = '';
         window.location.href = 'productos.jsp?categoria=' + categoria;
-      }
-
-      document.addEventListener('DOMContentLoaded', function() {
+      }      document.addEventListener('DOMContentLoaded', function() {
         const searchBar = document.getElementById('searchBar');
-        const productosContainer = document.getElementById('productosContainer');
+        let timeoutId;
+        
         searchBar.addEventListener('input', function() {
-          const query = searchBar.value.trim().toLowerCase();
-          const cards = productosContainer.querySelectorAll('.card');
-          cards.forEach(card => {
-            const title = card.querySelector('.card-title').textContent.toLowerCase();
-            if (title.includes(query)) {
-              card.parentElement.style.display = '';
+          clearTimeout(timeoutId);
+          timeoutId = setTimeout(() => {
+            const query = searchBar.value.trim();
+            if (query.length > 0) {
+              window.location.href = 'productos.jsp?busqueda=' + encodeURIComponent(query);
             } else {
-              card.parentElement.style.display = 'none';
+              window.location.href = 'productos.jsp';
             }
-          });
+          }, 500); // Espera 500ms después de que el usuario deje de escribir
         });
       });
     </script>
