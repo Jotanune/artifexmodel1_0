@@ -482,6 +482,7 @@ select:hover {
 /* Estilizado para número */
 input[type="number"] {
     -moz-appearance: textfield !important;
+    appearance: textfield !important;
 }
 
 input[type="number"]::-webkit-outer-spin-button,
@@ -528,6 +529,7 @@ input[type="number"]::-webkit-inner-spin-button {
 /* Estilo para rangos */
 input[type="range"] {
     -webkit-appearance: none !important;
+    appearance: none !important;
     width: 100% !important;
     height: 6px !important;
     background: var(--range-bg) !important;
@@ -1245,4 +1247,33 @@ input[type="range"]::-webkit-slider-thumb:hover {
 
 #heroTitle{
     color: var(--bg-primary) !important;
+}
+
+/* Estilos para checkbox mejorado */
+.form-check {
+    position: relative !important;
+    padding-left: 25px !important;
+    margin-bottom: 1rem !important;
+}
+
+.form-check-input {
+    position: absolute !important;
+    margin-left: -1.5rem !important;
+    width: 1.2rem !important;
+    height: 1.2rem !important;
+    cursor: pointer !important;
+    opacity: 1 !important;
+    z-index: 1 !important;
+}
+
+.form-check-label {
+    cursor: pointer !important;
+    user-select: none !important;
+    margin-left: 0.5rem !important;
+    color: var(--text-secondary) !important;
+}
+
+.form-check-input:checked {
+    background-color: var(--checkbox-checked-bg) !important;
+    border-color: var(--checkbox-checked-border) !important;
 }

@@ -106,10 +106,12 @@
         </div>
       </div>
 
-      <div class="mb-3 form-check">
-        <input type="checkbox" class="form-check-input" id="terminos" required>
-        <label class="form-check-label" for="terminos" data-i18n="aceptarTerminos">Acepto los términos y condiciones</label>
-        <div class="invalid-feedback" data-i18n="aceptarTerminosObligatorio">Debes aceptar los términos para registrarte.</div>
+      <div class="mb-3">
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="terminos" required>
+          <label class="form-check-label" for="terminos" data-i18n="aceptarTerminos">Acepto los términos y condiciones</label>
+          <div class="invalid-feedback" data-i18n="aceptarTerminosObligatorio">Debes aceptar los términos para registrarte.</div>
+        </div>
       </div>
 
       <div id="registerError" class="alert alert-danger" style="display: none;" data-i18n="errorRegistro">
