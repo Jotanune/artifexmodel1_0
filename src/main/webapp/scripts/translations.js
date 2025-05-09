@@ -1,5 +1,28 @@
 const translations = {
     es: {
+        // Épocas Artísticas
+        "renacimiento": "Renacimiento",
+        "renacimientoFecha": "Siglos XV-XVI",
+        "renacimientoDesc": "Período de renovación artística y cultural que marcó la transición entre la Edad Media y la Edad Moderna. Caracterizado por un renovado interés en la antigüedad clásica, el humanismo y la perspectiva.",
+        "barroco": "Barroco",
+        "barrocoFecha": "Siglos XVII-XVIII",
+        "barrocoDesc": "Estilo artístico que enfatiza el dramatismo, el movimiento y el contraste. Se caracteriza por su grandiosidad, teatralidad y el uso intenso del claroscuro.",
+        "expresionismo": "Expresionismo / Postimpresionismo",
+        "expresionismoFecha": "Finales del siglo XIX - Principios del XX",
+        "expresionismoDesc": "Movimientos que priorizaron la expresión emocional y la interpretación subjetiva de la realidad. Se caracteriza por el uso intenso del color y la distorsión de las formas.",
+        "cubismo": "Cubismo",
+        "cubismoFecha": "Principios del siglo XX",
+        "cubismoDesc": "Revolución artística que rompió con la perspectiva tradicional, representando objetos desde múltiples ángulos simultáneamente. Marcó el inicio del arte moderno.",
+        "surrealismo": "Surrealismo",
+        "surrealismoFecha": "1924-1966",
+        "surrealismoDesc": "Movimiento que exploró el subconsciente y los sueños, creando imágenes oníricas y fantásticas. Buscaba liberar la mente de las restricciones de la racionalidad.",
+        "verObras": "Ver obras de esta época",
+        "creacionadancaption": "La Creación de Adán - Miguel Ángel (1512)",
+        "lasmeninascaption": "Las Meninas - Diego Velázquez (1656)",
+        "elgritocaption": "El Grito - Edvard Munch (1893)",
+        "guernicacaption": "Guernica - Pablo Picasso (1937)",
+        "persistenciacaption": "La persistencia de la memoria - Salvador Dalí (1931)",
+
         // Menú
         "empresa": "Empresa",
         "contacto": "Contacto",
@@ -192,8 +215,30 @@ const translations = {
         "yaTienesCuenta": "¿Ya tienes una cuenta? Inicia sesión",
         "contrasenaRequisitos": "La contraseña debe tener entre 8 y 40 caracteres, una mayúscula, un número y un símbolo.",
         "contrasenaLongitud": "La contraseña no puede superar los 40 caracteres."
-    },
-    en: {
+    },    en: {
+        // Artistic Periods
+        "renacimiento": "Renaissance",
+        "renacimientoFecha": "15th-16th Centuries",
+        "renacimientoDesc": "Period of artistic and cultural renewal that marked the transition between the Middle Ages and the Modern Age. Characterized by a renewed interest in classical antiquity, humanism, and perspective.",
+        "barroco": "Baroque",
+        "barrocoFecha": "17th-18th Centuries",
+        "barrocoDesc": "Artistic style that emphasizes drama, movement, and contrast. Characterized by its grandeur, theatricality, and intense use of chiaroscuro.",
+        "expresionismo": "Expressionism / Post-Impressionism",
+        "expresionismoFecha": "Late 19th - Early 20th Century",
+        "expresionismoDesc": "Movements that prioritized emotional expression and subjective interpretation of reality. Characterized by intense use of color and distortion of forms.",
+        "cubismo": "Cubism",
+        "cubismoFecha": "Early 20th Century",
+        "cubismoDesc": "Artistic revolution that broke with traditional perspective, representing objects from multiple angles simultaneously. Marked the beginning of modern art.",
+        "surrealismo": "Surrealism",
+        "surrealismoFecha": "1924-1966",
+        "surrealismoDesc": "Movement that explored the subconscious and dreams, creating dreamlike and fantastic images. Sought to free the mind from the restrictions of rationality.",
+        "verObras": "See works from this period",
+        "creacionadancaption": "The Creation of Adam - Michelangelo (1512)",
+        "lasmeninascaption": "Las Meninas - Diego Velázquez (1656)",
+        "elgritocaption": "The Scream - Edvard Munch (1893)",
+        "guernicacaption": "Guernica - Pablo Picasso (1937)",
+        "persistenciacaption": "The Persistence of Memory - Salvador Dalí (1931)",
+
         // Menu
         "empresa": "Company",
         "contacto": "Contact",
