@@ -1,5 +1,15 @@
+// --- Funciones para manejar cookies de idioma ---
+function setLanguageCookie(lang) {
+    document.cookie = `language=${lang};path=/;max-age=31536000`;
+}
+
+function getLanguageCookie() {
+    const match = document.cookie.match(/(?:^|; )language=([^;]*)/);
+    return match ? decodeURIComponent(match[1]) : null;
+}
+
 function t(key) {
-    const lang = localStorage.getItem('language') || getBrowserLanguage();
+    const lang = getLanguageCookie() || localStorage.getItem('language') || getBrowserLanguage();
     return translations[lang][key] || key;
 }
 
@@ -9,7 +19,7 @@ function getBrowserLanguage() {
 }
 
 function translateCategory(categoria) {
-    const lang = localStorage.getItem('language') || getBrowserLanguage();
+    const lang = getLanguageCookie() || localStorage.getItem('language') || getBrowserLanguage();
     const categoriaKey = `categoria_${categoria.toLowerCase().replace(/\s+/g, '_')}`;
     return translations[lang][categoriaKey] || categoria;
 }
@@ -21,7 +31,7 @@ function translateImage(imagePath) {
 }
 
 function translatePage() {
-    const lang = localStorage.getItem('language') || getBrowserLanguage();
+    const lang = getLanguageCookie() || localStorage.getItem('language') || getBrowserLanguage();
     
     document.querySelectorAll('[data-i18n]').forEach(element => {
         const key = element.getAttribute('data-i18n');

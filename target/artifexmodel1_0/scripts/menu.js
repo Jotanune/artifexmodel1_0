@@ -12,14 +12,23 @@ class Menu extends HTMLElement {
             const menuContent = data.loggedIn ? this.getLoggedInMenu(data.usuario) : this.getDefaultMenu();
             this.innerHTML = menuContent;
             
+            // Establecer idioma visual del menú según la cookie
+            const lang = getLanguageCookie() || localStorage.getItem('language') || this.getBrowserLanguage();
+            this.setLanguage(lang);
             document.dispatchEvent(new Event("mi-menu-cargado"));
             this.initializeNavbarBehavior();
             this.initializeThemeSwitch();
+            // Traducir la página después de cargar el menú y establecer el idioma
+            translatePage();
         } catch (error) {
             this.innerHTML = this.getDefaultMenu();
+            // Establecer idioma visual del menú según la cookie
+            const lang = getLanguageCookie() || localStorage.getItem('language') || this.getBrowserLanguage();
+            this.setLanguage(lang);
             document.dispatchEvent(new Event("mi-menu-cargado"));
             this.initializeNavbarBehavior();
             this.initializeThemeSwitch();
+            translatePage();
         }
     }
 
@@ -168,16 +177,17 @@ class Menu extends HTMLElement {
     }
 
     initializeLanguageSwitch() {
-        const savedLang = localStorage.getItem('language') || this.getBrowserLanguage();
+        const savedLang = getLanguageCookie() || localStorage.getItem('language') || this.getBrowserLanguage();
         this.setLanguage(savedLang);
 
         const languageSwitch = this.querySelector('.language-switch');
         if (languageSwitch) {
             languageSwitch.addEventListener('click', (e) => {
                 e.preventDefault();
-                const currentLang = localStorage.getItem('language') || this.getBrowserLanguage();
+                const currentLang = getLanguageCookie() || localStorage.getItem('language') || this.getBrowserLanguage();
                 const newLang = currentLang === 'es' ? 'en' : 'es';
                 this.setLanguage(newLang);
+                setLanguageCookie(newLang);
                 localStorage.setItem('language', newLang);
                 document.dispatchEvent(new Event('languageChanged'));
                 // Traducir la página inmediatamente
