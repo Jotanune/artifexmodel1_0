@@ -1,0 +1,262 @@
+/* Estilos específicos para epocas.jsp */
+.epocas-page main {
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    height: 100vh;
+    scroll-behavior: smooth;
+}
+
+.epocas-page section {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Estilos específicos para cada época */
+.epocas-page #renacimiento {
+    background: linear-gradient(135deg, #f2d9b3 0%, #e6c9a3 100%);
+    font-family: 'EB Garamond', serif;
+}
+
+.epocas-page #renacimiento h2 {
+    color: #4a3c2d;
+    font-size: 4rem;
+    letter-spacing: 0.05em;
+}
+
+.epocas-page #barroco {
+    background: linear-gradient(135deg, #2c1810 0%, #412920 100%);
+    font-family: 'Cormorant Garamond', serif;
+    color: #e6d5c9;
+}
+
+.epocas-page #barroco h2 {
+    color: #d4b08c;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.epocas-page #expresionismo {
+    background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%);
+    font-family: 'Oswald', sans-serif;
+}
+
+.epocas-page #expresionismo h2 {
+    color: #2c2c2c;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.epocas-page #cubismo {
+    background: linear-gradient(135deg, #f7f7f7 0%, #e0e0e0 100%);
+    font-family: 'Montserrat', sans-serif;
+}
+
+.epocas-page #cubismo h2 {
+    color: #333;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.epocas-page #surrealismo {
+    background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+    font-family: 'Poiret One', cursive;
+    color: #ecf0f1;
+}
+
+.epocas-page #surrealismo h2 {
+    color: #fff;
+    font-weight: 400;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Estilos comunes para todas las secciones */
+.epocas-page .obra-destacada {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease;
+}
+
+.epocas-page .obra-destacada:hover {
+    transform: scale(1.02);
+}
+
+.epocas-page .obra-destacada img {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 70vh !important;
+    object-fit: contain !important;
+}
+
+/* Estilos responsive */
+@media (max-width: 768px) {
+    .epocas-page section {
+        padding: 2rem 1rem;
+    }
+
+    .epocas-page section h2 {
+        font-size: 2.5rem !important;
+    }
+
+    .epocas-page .row {
+        flex-direction: column-reverse;
+    }
+
+    .epocas-page .col-md-6 {
+        margin-bottom: 2rem;
+    }
+
+    .epocas-page .obra-destacada {
+        max-height: 50vh;
+    }
+
+    .epocas-page .obra-destacada img {
+        max-height: 50vh !important;
+    }
+}
+
+/* Animaciones al hacer scroll */
+.epocas-page .row > div {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.epocas-page section.active .row > div {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Estilos para los botones */
+.epocas-page .btn-primary {
+    border: none;
+    padding: 1rem 2rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.epocas-page #renacimiento .btn-primary {
+    background-color: #4a3c2d !important;
+    color: #f2d9b3 !important;
+}
+
+.epocas-page #barroco .btn-primary {
+    background-color: #d4b08c !important;
+    color: #2c1810 !important;
+}
+
+.epocas-page #expresionismo .btn-primary {
+    background-color: #2c2c2c !important;
+    color: #fff !important;
+}
+
+.epocas-page #cubismo .btn-primary {
+    background-color: #333 !important;
+    color: #fff !important;
+}
+
+.epocas-page #surrealismo .btn-primary {
+    background-color: #ecf0f1 !important;
+    color: #2c3e50 !important;
+}
+
+/* Estilos para los textos descriptivos */
+.epocas-page .lead {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.epocas-page .text-muted {
+    opacity: 0.7;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Estados iniciales de los elementos */
+.epocas-page section:not(.active) .display-4,
+.epocas-page section:not(.active) .h5,
+.epocas-page section:not(.active) .lead,
+.epocas-page section:not(.active) .btn-primary,
+.epocas-page section:not(.active) .obra-destacada {
+    opacity: 0;
+}
+
+/* Animaciones cuando la sección está activa */
+.epocas-page section.active .display-4 {
+    animation: fadeIn 0.8s ease forwards;
+}
+
+.epocas-page section.active .h5 {
+    animation: slideUp 0.6s ease forwards;
+    animation-delay: 0.1s;
+}
+
+.epocas-page section.active .lead {
+    animation: slideUp 0.6s ease forwards;
+    animation-delay: 0.2s;
+}
+
+.epocas-page section.active .btn-primary {
+    animation: fadeIn 0.6s ease forwards;
+    animation-delay: 0.3s;
+}
+
+.epocas-page section.active .obra-destacada {
+    animation: scaleIn 0.8s ease forwards;
+    animation-delay: 0.2s;
+}
+
+/* Optimización de rendimiento */
+.epocas-page section .display-4,
+.epocas-page section .h5,
+.epocas-page section .lead,
+.epocas-page section .btn-primary,
+.epocas-page section .obra-destacada {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+}
+
+/* Desactivar animaciones si el usuario prefiere reducir el movimiento */
+@media (prefers-reduced-motion: reduce) {
+    .epocas-page section .display-4,
+    .epocas-page section .h5,
+    .epocas-page section .lead,
+    .epocas-page section .btn-primary,
+    .epocas-page section .obra-destacada {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
