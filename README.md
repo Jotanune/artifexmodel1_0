@@ -1,7 +1,7 @@
 # 🎨 Artifex - Tienda de Arte / Art Store
 
 <div align="center">
-  <img src="src/main/webapp/img/artifex_logo.png" alt="Artifex Logo" width="200"/>
+  <img src="src/main/webapp/img/artifex.png" alt="Artifex Logo" width="200"/>
   
   [🇪🇸 Español](#español) | [🇬🇧 English](#english)
 </div>
