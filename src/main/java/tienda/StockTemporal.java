@@ -27,9 +27,6 @@ public class StockTemporal {
             .mapToInt(Map.Entry::getValue)
             .sum();
 
-        // Calcular cuánto tiene reservado esta sesión
-        int reservadoSesion = reservasPorSesion.getOrDefault(sessionId, 0);
-
         // Verificar si hay suficiente stock disponible
         if (stockDisponible >= (totalReservado + cantidad)) {
             reservasPorSesion.put(sessionId, cantidad);

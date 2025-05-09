@@ -9,12 +9,10 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import tienda.AccesoBD;
 import tienda.UsuarioBD;
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 @WebServlet("/actualizarUsuario")
 public class ActualizarUsuarioServlet extends HttpServlet {
-    private Gson gson = new Gson();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {

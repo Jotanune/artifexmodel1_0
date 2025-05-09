@@ -8,7 +8,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import tienda.AccesoBD;
-import tienda.ProductoBD;
 import tienda.StockTemporal;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -29,6 +28,7 @@ public class CarritoServlet extends HttpServlet {
         HttpSession session = request.getSession();
         String sessionId = session.getId();
 
+        @SuppressWarnings("unchecked")
         HashMap<Integer, Integer> carrito = (HashMap<Integer, Integer>) session.getAttribute("carrito");
         if (carrito == null) {
             carrito = new HashMap<>();
@@ -90,6 +90,7 @@ public class CarritoServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("application/json");
         HttpSession session = request.getSession();
+        @SuppressWarnings("unchecked")
         HashMap<Integer, Integer> carrito = (HashMap<Integer, Integer>) session.getAttribute("carrito");
         
         if (carrito != null) {

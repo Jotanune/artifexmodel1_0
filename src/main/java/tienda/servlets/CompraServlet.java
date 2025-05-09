@@ -9,14 +9,11 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import tienda.AccesoBD;
 import tienda.UsuarioBD;
-import tienda.StockTemporal;
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import java.util.HashMap;
 
 @WebServlet("/compra")
 public class CompraServlet extends HttpServlet {
-    private Gson gson = new Gson();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
@@ -34,6 +31,7 @@ public class CompraServlet extends HttpServlet {
             return;
         }
 
+        @SuppressWarnings("unchecked")
         HashMap<Integer, Integer> carrito = (HashMap<Integer, Integer>) session.getAttribute("carrito");
         if (carrito == null || carrito.isEmpty()) {
             jsonResponse.addProperty("success", false);

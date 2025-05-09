@@ -409,7 +409,9 @@ public final class AccesoBD {
                 lineaPedido.put("unidades", rs.getInt("unidades"));
                 lineaPedido.put("precio", rs.getFloat("precio_unitario"));
                 
-                ((List<Map<String, Object>>) pedidosMap.get(codigoPedido).get("productos")).add(lineaPedido);
+                @SuppressWarnings("unchecked")
+                List<Map<String, Object>> productos = (List<Map<String, Object>>) pedidosMap.get(codigoPedido).get("productos");
+                productos.add(lineaPedido);
             }
             
             pedidos.addAll(pedidosMap.values());
