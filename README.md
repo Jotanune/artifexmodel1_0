@@ -91,6 +91,6 @@ _(This is a demonstration application - Not a real store)_
 ---
 
 <div align="center">
-  <p>Desarrollado con ❤️ como proyecto educativo</p>
-  <p>Developed with ❤️ as an educational project</p>
+  <p>Desarrollado como proyecto educativo</p>
+  <p>Developed as an educational project</p>
 </div>
