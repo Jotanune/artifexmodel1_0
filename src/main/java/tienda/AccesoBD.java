@@ -377,95 +377,123 @@ public final class AccesoBD {
     public List<Map<String, Object>> obtenerPedidosUsuario(int codigoUsuario) {
         List<Map<String, Object>> pedidos = new ArrayList<>();
         try {
-            String query = "SELECT p.codigo, p.fecha, p.importe, p.estado, e.descripcion as estado_desc, " +
-                          "d.unidades, d.precio_unitario, pr.descripcion " +
-                          "FROM pedidos p " +
-                          "JOIN estados e ON p.estado = e.codigo " +
-                          "JOIN detalle d ON p.codigo = d.codigo_pedido " +
-                          "JOIN productos pr ON d.codigo_producto = pr.codigo " +
-                          "WHERE p.persona = ? " +
-                          "ORDER BY p.fecha DESC, p.codigo DESC";
+            abrirConexionBD();        String sql = "SELECT p.codigo, p.fecha, p.importe, e.descripcion as estado, " +
+                    "d.codigo_producto, d.unidades, d.precio_unitario, " +
+                    "pr.descripcion as descripcion " +
+                    "FROM pedidos p " +
+                    "JOIN detalle d ON p.codigo = d.codigo_pedido " +
+                    "JOIN productos pr ON d.codigo_producto = pr.codigo " +
+                    "JOIN estados e ON p.estado = e.codigo " +
+                    "WHERE p.persona = ? " +
+                    "ORDER BY p.fecha DESC, p.codigo DESC";
             
-            PreparedStatement s = conexionBD.prepareStatement(query);
-            s.setInt(1, codigoUsuario);
-            ResultSet rs = s.executeQuery();
-            
+            PreparedStatement stmt = conexionBD.prepareStatement(sql);
+            stmt.setInt(1, codigoUsuario);
+            ResultSet rs = stmt.executeQuery();
+
             Map<Integer, Map<String, Object>> pedidosMap = new HashMap<>();
             
             while (rs.next()) {
                 int codigoPedido = rs.getInt("codigo");
+                
                 if (!pedidosMap.containsKey(codigoPedido)) {
                     Map<String, Object> pedido = new HashMap<>();
                     pedido.put("codigo", codigoPedido);
-                    pedido.put("fecha", rs.getDate("fecha"));
-                    pedido.put("importe", rs.getFloat("importe"));
-                    pedido.put("estado", rs.getString("estado_desc"));
+                    pedido.put("fecha", rs.getTimestamp("fecha"));
+                    pedido.put("importe", rs.getDouble("importe"));
+                    pedido.put("estado", rs.getString("estado"));
                     pedido.put("productos", new ArrayList<Map<String, Object>>());
                     pedidosMap.put(codigoPedido, pedido);
                 }
                 
-                Map<String, Object> lineaPedido = new HashMap<>();
-                lineaPedido.put("descripcion", rs.getString("descripcion"));
-                lineaPedido.put("unidades", rs.getInt("unidades"));
-                lineaPedido.put("precio", rs.getFloat("precio_unitario"));
+                Map<String, Object> producto = new HashMap<>();            producto.put("codigo", rs.getInt("codigo_producto")); // Código del producto
+            producto.put("descripcion", rs.getString("descripcion")); // Descripción del producto
+            producto.put("precio", rs.getDouble("precio_unitario")); // Precio unitario del detalle
+            producto.put("unidades", rs.getInt("unidades")); // Unidades del detalle
                 
-                @SuppressWarnings("unchecked")
-                List<Map<String, Object>> productos = (List<Map<String, Object>>) pedidosMap.get(codigoPedido).get("productos");
-                productos.add(lineaPedido);
+                ((List<Map<String, Object>>) pedidosMap.get(codigoPedido).get("productos")).add(producto);
             }
             
             pedidos.addAll(pedidosMap.values());
             
         } catch (Exception e) {
-            System.err.println("Error al obtener pedidos del usuario");
-            System.err.println(e.getMessage());
+            System.err.println("Error al obtener pedidos del usuario: " + e.getMessage());
         }
         return pedidos;
-    }
-
-    public boolean cancelarPedido(int codigoPedido, int codigoUsuario) {
+    }    public boolean cancelarPedido(int codigoPedido, int codigoUsuario) {
         try {
-            // Verificar que el pedido pertenece al usuario y está en estado válido para cancelar
-            String checkQuery = "SELECT 1 FROM pedidos WHERE codigo = ? AND persona = ? AND estado IN (1, 2)";
-            PreparedStatement checkStmt = conexionBD.prepareStatement(checkQuery);
+            abrirConexionBD();
+            conexionBD.setAutoCommit(false);
+            
+            // Verificar que el pedido pertenece al usuario y está pendiente
+            String checkPedido = "SELECT p.estado FROM pedidos p JOIN estados e ON p.estado = e.codigo WHERE p.codigo = ? AND p.persona = ? AND e.descripcion = 'pendiente'";
+            PreparedStatement checkStmt = conexionBD.prepareStatement(checkPedido);
             checkStmt.setInt(1, codigoPedido);
             checkStmt.setInt(2, codigoUsuario);
             ResultSet rs = checkStmt.executeQuery();
             
             if (!rs.next()) {
-                return false; // El pedido no existe, no pertenece al usuario o no se puede cancelar
+                conexionBD.rollback();
+                return false;
             }
-
-            // Actualizar el estado del pedido a cancelado (estado 4)
-            String updateQuery = "UPDATE pedidos SET estado = 4 WHERE codigo = ?";
-            PreparedStatement updateStmt = conexionBD.prepareStatement(updateQuery);
+              // Obtener los productos y cantidades del pedido
+            String selectProductos = "SELECT codigo_producto, unidades FROM detalle WHERE codigo_pedido = ?";
+            PreparedStatement selectStmt = conexionBD.prepareStatement(selectProductos);
+            selectStmt.setInt(1, codigoPedido);
+            ResultSet prodRs = selectStmt.executeQuery();
+            
+            // Devolver el stock para cada producto
+            while (prodRs.next()) {
+                int codigoProducto = prodRs.getInt("codigo_producto");
+                int unidades = prodRs.getInt("unidades");
+                
+                String updateStock = "UPDATE productos SET existencias = existencias + ? WHERE codigo = ?";
+                PreparedStatement updateStmt = conexionBD.prepareStatement(updateStock);
+                updateStmt.setInt(1, unidades);
+                updateStmt.setInt(2, codigoProducto);
+                updateStmt.executeUpdate();
+            }
+            
+            // Cancelar el pedido
+            String updatePedido = "UPDATE pedidos SET estado = (SELECT codigo FROM estados WHERE descripcion = 'cancelado') WHERE codigo = ?";
+            PreparedStatement updateStmt = conexionBD.prepareStatement(updatePedido);
             updateStmt.setInt(1, codigoPedido);
+            updateStmt.executeUpdate();
             
-            return updateStmt.executeUpdate() > 0;
-            
+            conexionBD.commit();
+            return true;
         } catch (Exception e) {
             System.err.println("Error al cancelar el pedido: " + e.getMessage());
+            try {
+                conexionBD.rollback();
+            } catch (SQLException se) {
+                System.err.println("Error al hacer rollback: " + se.getMessage());
+            }
             return false;
+        } finally {
+            try {
+                conexionBD.setAutoCommit(true);
+            } catch (SQLException se) {
+                System.err.println("Error al restaurar autocommit: " + se.getMessage());
+            }
         }
     }
 
     public void actualizarEstadosPedidos() {
         try {
-            // Actualizar pedidos enviados a entregados después de 1 minuto
-            String updateEnviados = "UPDATE pedidos SET estado = 3 " +
-                                  "WHERE estado = 2 " +
-                                  "AND TIMESTAMPDIFF(MINUTE, fecha, NOW()) >= 2"; // 2 minutos desde la fecha de creación
-            
-            PreparedStatement sEnviados = conexionBD.prepareStatement(updateEnviados);
-            sEnviados.executeUpdate();
-
-            // Actualizar pedidos pendientes a enviados después de 1 minuto
+            // Cambiar de pendiente (1) a enviado (2) después de 5 minutos
             String updatePendientes = "UPDATE pedidos SET estado = 2 " +
                                    "WHERE estado = 1 " +
-                                   "AND TIMESTAMPDIFF(MINUTE, fecha, NOW()) >= 1";
-            
+                                   "AND TIMESTAMPDIFF(MINUTE, fecha, NOW()) >= 5";
             PreparedStatement sPendientes = conexionBD.prepareStatement(updatePendientes);
             sPendientes.executeUpdate();
+
+            // Cambiar de enviado (2) a entregado (3) después de 5 minutos más (10 minutos desde la creación)
+            String updateEnviados = "UPDATE pedidos SET estado = 3 " +
+                                  "WHERE estado = 2 " +
+                                  "AND TIMESTAMPDIFF(MINUTE, fecha, NOW()) >= 10";
+            PreparedStatement sEnviados = conexionBD.prepareStatement(updateEnviados);
+            sEnviados.executeUpdate();
 
         } catch (Exception e) {
             System.err.println("Error actualizando estados de pedidos: " + e.getMessage());
@@ -611,5 +639,108 @@ public final class AccesoBD {
             System.err.println(e.getMessage());
         }
         return productos;
+    }
+
+    /**
+     * Edita un pedido pendiente cancelando productos individuales y devolviendo stock.
+     * Si el pedido queda vacío, lo cancela.
+     */
+    public boolean editarPedidoProductos(int codigoPedido, int codigoUsuario, List<Map<String, Integer>> productosCancelar) {
+    abrirConexionBD();
+    boolean todoOk = false;
+    
+    try {
+        conexionBD.setAutoCommit(false);
+        
+        // Verificar que el pedido pertenece al usuario y está pendiente
+        String checkPedido = "SELECT p.estado FROM pedidos p JOIN estados e ON p.estado = e.codigo WHERE p.codigo = ? AND p.persona = ? AND e.descripcion = 'pendiente'";
+        PreparedStatement checkStmt = conexionBD.prepareStatement(checkPedido);
+        checkStmt.setInt(1, codigoPedido);
+        checkStmt.setInt(2, codigoUsuario);
+        ResultSet rs = checkStmt.executeQuery();
+            
+            if (!rs.next()) {
+                System.err.println("El pedido no existe, no pertenece al usuario o no está pendiente");
+                conexionBD.rollback();
+                return false;
+            }
+            
+            // Por cada producto a cancelar
+            for (Map<String, Integer> producto : productosCancelar) {
+                int codigoProducto = producto.get("codigo");
+                int cantidadCancelar = producto.get("cantidad");
+                      if (cantidadCancelar > 0) {
+                // Verificar que la cantidad a cancelar es válida
+                String checkCantidad = "SELECT unidades FROM detalle WHERE codigo_pedido = ? AND codigo_producto = ? AND unidades >= ?";
+                PreparedStatement checkCantidadStmt = conexionBD.prepareStatement(checkCantidad);
+                checkCantidadStmt.setInt(1, codigoPedido);
+                checkCantidadStmt.setInt(2, codigoProducto);
+                checkCantidadStmt.setInt(3, cantidadCancelar);
+                ResultSet rsCantidad = checkCantidadStmt.executeQuery();
+                
+                if (!rsCantidad.next()) {
+                    System.err.println("Cantidad a cancelar inválida para el producto " + codigoProducto);
+                    conexionBD.rollback();
+                    return false;
+                }
+                
+                // Actualizar la cantidad en detalle
+                String updatePedidoProd = "UPDATE detalle SET unidades = unidades - ? " +
+                                        "WHERE codigo_pedido = ? AND codigo_producto = ?";
+                PreparedStatement updatePedidoStmt = conexionBD.prepareStatement(updatePedidoProd);
+                updatePedidoStmt.setInt(1, cantidadCancelar);
+                updatePedidoStmt.setInt(2, codigoPedido);
+                updatePedidoStmt.setInt(3, codigoProducto);
+                updatePedidoStmt.executeUpdate();
+                    
+                    // Devolver el stock al producto
+                    String updateStock = "UPDATE productos SET existencias = existencias + ? WHERE codigo = ?";
+                    PreparedStatement updateStockStmt = conexionBD.prepareStatement(updateStock);
+                    updateStockStmt.setInt(1, cantidadCancelar);
+                    updateStockStmt.setInt(2, codigoProducto);
+                    updateStockStmt.executeUpdate();
+                          // Actualizar el importe total del pedido
+                String updateImporte = "UPDATE pedidos p " +
+                                     "SET importe = (SELECT SUM(d.unidades * d.precio_unitario) " +
+                                     "               FROM detalle d " +
+                                     "               WHERE d.codigo_pedido = ?) " +
+                                     "WHERE p.codigo = ?";
+                PreparedStatement updateImporteStmt = conexionBD.prepareStatement(updateImporte);
+                updateImporteStmt.setInt(1, codigoPedido);
+                updateImporteStmt.setInt(2, codigoPedido);
+                updateImporteStmt.executeUpdate();
+                }
+            }
+                  // Verificar si quedan productos en el pedido
+        String checkProductos = "SELECT COUNT(*) as total FROM detalle WHERE codigo_pedido = ? AND unidades > 0";
+        PreparedStatement checkProdStmt = conexionBD.prepareStatement(checkProductos);
+        checkProdStmt.setInt(1, codigoPedido);
+        ResultSet rsProd = checkProdStmt.executeQuery();
+        
+        if (rsProd.next() && rsProd.getInt("total") == 0) {
+            // Si no quedan productos, cancelar el pedido (asumiendo que el estado 'cancelado' tiene código 3)
+            String cancelarPedido = "UPDATE pedidos SET estado = (SELECT codigo FROM estados WHERE descripcion = 'cancelado') WHERE codigo = ?";
+            PreparedStatement cancelarStmt = conexionBD.prepareStatement(cancelarPedido);
+            cancelarStmt.setInt(1, codigoPedido);
+            cancelarStmt.executeUpdate();
+            }
+            
+            conexionBD.commit();
+            todoOk = true;
+        } catch (Exception e) {
+            System.err.println("Error al editar el pedido: " + e.getMessage());
+            try {
+                conexionBD.rollback();
+            } catch (SQLException se) {
+                System.err.println("Error al hacer rollback: " + se.getMessage());
+            }
+        } finally {
+            try {
+                conexionBD.setAutoCommit(true);
+            } catch (SQLException se) {
+                System.err.println("Error al restaurar autocommit: " + se.getMessage());
+            }
+        }
+        return todoOk;
     }
 }

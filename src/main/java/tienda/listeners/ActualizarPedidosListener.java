@@ -15,8 +15,7 @@ public class ActualizarPedidosListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent event) {
         scheduler = Executors.newSingleThreadScheduledExecutor();
-        
-        // Programar la tarea para que se ejecute cada 5 segundos
+        // Programar la tarea para que se ejecute cada 1 minuto
         scheduler.scheduleAtFixedRate(() -> {
             try {
                 AccesoBD bd = AccesoBD.getInstance();
@@ -24,7 +23,7 @@ public class ActualizarPedidosListener implements ServletContextListener {
             } catch (Exception e) {
                 System.err.println("Error actualizando estados de pedidos: " + e.getMessage());
             }
-        }, 0, 5, TimeUnit.SECONDS);
+        }, 1, 5, TimeUnit.MINUTES);
     }
 
     @Override
