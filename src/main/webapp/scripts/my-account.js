@@ -245,54 +245,81 @@ async function cancelarPedido(codigoPedido) {
 
 async function comprarCarrito() {
     try {
-        const response = await fetch('compra', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
+        // Mostrar el modal de compra
+        const modal = new bootstrap.Modal(document.getElementById('compraModal'));
+        modal.show();
+
+        // Manejar el cambio en el método de pago
+        document.getElementById('metodoPago').addEventListener('change', function() {
+            const datosTarjeta = document.getElementById('datosTarjeta');
+            const datosTransferencia = document.getElementById('datosTransferencia');
+            
+            if (this.value === 'tarjeta') {
+                datosTarjeta.style.display = 'block';
+                datosTransferencia.style.display = 'none';
+                // Hacer los campos de tarjeta requeridos
+                document.getElementById('numeroTarjeta').required = true;
+                document.getElementById('caducidadTarjeta').required = true;
+                document.getElementById('cvvTarjeta').required = true;
+                document.getElementById('comprobanteTransferencia').required = false;
+            } else if (this.value === 'transferencia') {
+                datosTarjeta.style.display = 'none';
+                datosTransferencia.style.display = 'block';
+                // Hacer el comprobante requerido y quitar required de los campos de tarjeta
+                document.getElementById('numeroTarjeta').required = false;
+                document.getElementById('caducidadTarjeta').required = false;
+                document.getElementById('cvvTarjeta').required = false;
+                document.getElementById('comprobanteTransferencia').required = true;
+            } else {
+                datosTarjeta.style.display = 'none';
+                datosTransferencia.style.display = 'none';
             }
         });
 
-        const data = await response.json();
-        const alertaCompra = document.getElementById('alertaCompra');
-        const alertaCompraMensaje = document.getElementById('alertaCompraMensaje');
+        // Manejar el envío del formulario
+        document.getElementById('btnFinalizarCompra').addEventListener('click', async function() {
+            const form = document.getElementById('formCompra');
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
 
-        alertaCompraMensaje.textContent = data.message;
-        alertaCompra.classList.add('show');
+            // Recoger los datos de dirección
+            const datosEnvio = {
+                domicilio: document.getElementById('domicilioEnvio').value,
+                poblacion: document.getElementById('poblacionEnvio').value,
+                provincia: document.getElementById('provinciaEnvio').value,
+                cp: document.getElementById('cpEnvio').value
+            };
 
-        if (data.success) {
-            alertaCompra.classList.remove('alert-danger');
-            alertaCompra.classList.add('alert-success');
-            
-            // Limpiar el carrito en memoria
-            window.carrito = new Map();
-            
-            // Actualizar la interfaz
-            actualizarContenidoCarrito();
-            
-            // Disparar evento para actualizar el menú
-            document.dispatchEvent(new CustomEvent('carritoActualizado'));
-            
-            // Recargar los pedidos
-            await cargarPedidos();
-        } else {
-            alertaCompra.classList.remove('alert-success');
-            alertaCompra.classList.add('alert-danger');
-        }
+            // Realizar la compra
+            const response = await fetch('compra', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    datosEnvio: datosEnvio,
+                    metodoPago: document.getElementById('metodoPago').value
+                })
+            });
 
-        setTimeout(() => {
-            alertaCompra.classList.remove('show');
-        }, 5000);
+            const data = await response.json();
+            
+            if (data.success) {
+                modal.hide();
+                mostrarAlerta('success', data.message);
+                // Limpiar el carrito
+                localStorage.removeItem('carrito');
+                // Recargar la página después de 2 segundos
+                setTimeout(() => window.location.reload(), 2000);
+            } else {
+                mostrarAlerta('error', data.message);
+            }
+        });
     } catch (error) {
-        console.error('Error:', error);
-        const alertaCompra = document.getElementById('alertaCompra');
-        const alertaCompraMensaje = document.getElementById('alertaCompraMensaje');
-        alertaCompra.classList.remove('alert-success');
-        alertaCompra.classList.add('alert-danger', 'show');
-        alertaCompraMensaje.textContent = 'Error al procesar la compra';
-        
-        setTimeout(() => {
-            alertaCompra.classList.remove('show');
-        }, 5000);
+        console.error('Error al procesar la compra:', error);
+        mostrarAlerta('error', 'Error al procesar la compra. Por favor, inténtelo de nuevo.');
     }
 }
 

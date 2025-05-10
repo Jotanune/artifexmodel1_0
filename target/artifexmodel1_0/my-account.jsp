@@ -78,6 +78,85 @@
         </div>
     </div>
 
+    <!-- Modal para compra -->
+    <div class="modal fade" id="compraModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Finalizar Compra</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formCompra">
+                        <h6 class="mb-3">Dirección de Envío</h6>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Domicilio</label>
+                                <input type="text" class="form-control" id="domicilioEnvio" name="domicilio" value="<%= usuario.getDomicilio() != null ? usuario.getDomicilio() : "" %>" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Población</label>
+                                <input type="text" class="form-control" id="poblacionEnvio" name="poblacion" value="<%= usuario.getPoblacion() != null ? usuario.getPoblacion() : "" %>" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Provincia</label>
+                                <input type="text" class="form-control" id="provinciaEnvio" name="provincia" value="<%= usuario.getProvincia() != null ? usuario.getProvincia() : "" %>" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Código Postal</label>
+                                <input type="text" class="form-control" id="cpEnvio" name="cp" pattern="[0-9]{5}" value="<%= usuario.getCp() != null ? usuario.getCp() : "" %>" required>
+                            </div>
+                        </div>
+
+                        <h6 class="mb-3 mt-4">Método de Pago</h6>
+                        <div class="mb-3">
+                            <select class="form-select" id="metodoPago" required>
+                                <option value="">Seleccione un método de pago</option>
+                                <option value="tarjeta">Tarjeta de Crédito</option>
+                                <option value="transferencia">Transferencia Bancaria</option>
+                            </select>
+                        </div>
+
+                        <div id="datosTarjeta" style="display: none;">
+                            <div class="row">
+                                <div class="col-12 mb-3">
+                                    <label class="form-label">Número de Tarjeta</label>
+                                    <input type="text" class="form-control" id="numeroTarjeta" pattern="[0-9]{16}" placeholder="1234567890123456">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Fecha de Caducidad (MM/AA)</label>
+                                    <input type="text" class="form-control" id="caducidadTarjeta" pattern="(0[1-9]|1[0-2])\/([0-9]{2})" placeholder="MM/AA">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">CVV</label>
+                                    <input type="text" class="form-control" id="cvvTarjeta" pattern="[0-9]{3,4}" placeholder="123">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="datosTransferencia" style="display: none;">
+                            <div class="alert alert-info">
+                                <h6>Datos Bancarios para la Transferencia:</h6>
+                                <p class="mb-1">IBAN: ES91 2100 0418 4502 0005 1332</p>
+                                <p class="mb-1">Beneficiario: Artifex Model</p>
+                                <p class="mb-1">Concepto: Pedido + su email</p>
+                                <p class="mb-0">Por favor, adjunte el comprobante de transferencia a continuación:</p>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Comprobante de Transferencia</label>
+                                <input type="file" class="form-control" id="comprobanteTransferencia" accept=".pdf,.jpg,.jpeg,.png">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="btnFinalizarCompra">Finalizar Compra</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <mi-footer></mi-footer>
 
     <!-- Modal para cambiar contraseña (fuera de la tarjeta para evitar bugs al editar datos) -->

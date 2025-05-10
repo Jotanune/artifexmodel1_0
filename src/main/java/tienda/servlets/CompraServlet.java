@@ -10,6 +10,8 @@ import jakarta.servlet.http.HttpSession;
 import tienda.AccesoBD;
 import tienda.UsuarioBD;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import java.io.BufferedReader;
 import java.util.HashMap;
 
 @WebServlet("/compra")
@@ -41,7 +43,29 @@ public class CompraServlet extends HttpServlet {
         }
 
         try {
+            // Leer el cuerpo JSON de la petición
+            BufferedReader reader = request.getReader();
+            JsonObject jsonRequest = JsonParser.parseReader(reader).getAsJsonObject();
+            JsonObject datosEnvio = jsonRequest.getAsJsonObject("datosEnvio");
+
+            // Actualizar los datos de envío del usuario
+            usuario.setDomicilio(datosEnvio.get("domicilio").getAsString());
+            usuario.setPoblacion(datosEnvio.get("poblacion").getAsString());
+            usuario.setProvincia(datosEnvio.get("provincia").getAsString());
+            usuario.setCp(datosEnvio.get("cp").getAsString());
+
             AccesoBD bd = AccesoBD.getInstance();
+            // Actualizar los datos del usuario primero
+            boolean actualizacionExitosa = bd.actualizarUsuario(usuario, null);
+            
+            if (!actualizacionExitosa) {
+                jsonResponse.addProperty("success", false);
+                jsonResponse.addProperty("message", "Error al actualizar los datos de envío");
+                response.getWriter().write(jsonResponse.toString());
+                return;
+            }
+
+            // Procesar la compra
             boolean compraExitosa = bd.procesarCompra(usuario.getCodigo(), carrito, sessionId);
             
             if (compraExitosa) {
