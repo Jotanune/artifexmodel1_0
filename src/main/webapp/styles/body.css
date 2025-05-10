@@ -1307,3 +1307,178 @@ input[type="range"]::-webkit-slider-thumb:hover {
     background-color: var(--checkbox-checked-bg) !important;
     border-color: var(--checkbox-checked-border) !important;
 }
+
+/* --- Estilos personalizados para la página de Mi Cuenta (my-account.jsp) --- */
+
+/* Tarjeta principal de usuario */
+#usuarioInfo, .card-body {
+    background: var(--bg-secondary) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 6px 32px var(--shadow-color) !important;
+    padding: 2.5rem 2rem 2rem 2rem !important;
+    margin-bottom: 2rem !important;
+    border: 1.5px solid var(--border-color) !important;
+    transition: box-shadow 0.3s cubic-bezier(0.4,0,0.2,1) !important;
+}
+
+#usuarioInfo p {
+    font-size: 1.08rem !important;
+    color: var(--text-primary) !important;
+    margin-bottom: 0.7rem !important;
+    letter-spacing: 0.01em !important;
+}
+
+#usuarioInfo .btn-primary, #usuarioInfo .btn-warning, #usuarioInfo .btn-success, #usuarioInfo .btn-secondary {
+    background: linear-gradient(90deg, var(--bg-primary) 60%, var(--bg-secondary) 100%) !important;
+    color: var(--text-primary) !important;
+    border: 1.5px solid var(--border-color) !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    box-shadow: 0 2px 8px var(--shadow-color) !important;
+    margin-bottom: 0.5rem !important;
+    transition: background 0.3s, color 0.3s, box-shadow 0.3s !important;
+}
+#usuarioInfo .btn-primary:hover, #usuarioInfo .btn-warning:hover, #usuarioInfo .btn-success:hover, #usuarioInfo .btn-secondary:hover {
+    background: var(--hover-bg) !important;
+    color: var(--text-primary) !important;
+    box-shadow: 0 4px 16px var(--shadow-color) !important;
+}
+
+/* Inputs y formularios de edición */
+#formularioEditar .form-control {
+    border-radius: 10px !important;
+    border: 1.5px solid var(--border-color) !important;
+    background: var(--input-bg) !important;
+    color: var(--input-color) !important;
+    font-size: 1.05rem !important;
+    box-shadow: 0 2px 8px var(--shadow-color) !important;
+    transition: border 0.3s, box-shadow 0.3s !important;
+}
+#formularioEditar .form-control:focus {
+    border-color: var(--text-muted) !important;
+    box-shadow: 0 4px 16px var(--shadow-color) !important;
+}
+#formularioEditar label {
+    color: var(--label-color) !important;
+    font-weight: 500 !important;
+    margin-bottom: 0.2rem !important;
+}
+
+/* Modal de cambiar contraseña */
+#cambiarClaveModal .modal-content {
+    border-radius: 16px !important;
+    background: rgba(255,255,255,0.98) !important;
+    box-shadow: 0 8px 32px rgba(44,44,44,0.13) !important;
+    border: 1.5px solid var(--border-color) !important;
+    backdrop-filter: blur(6px) !important;
+    animation: modalFadeIn 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+@keyframes modalFadeIn {
+    from { transform: translateY(-40px) scale(0.98); opacity: 0; }
+    to { transform: translateY(0) scale(1); opacity: 1; }
+}
+#cambiarClaveModal .modal-header {
+    border-bottom: none !important;
+    padding-bottom: 0 !important;
+}
+#cambiarClaveModal .modal-title {
+    color: var(--text-primary) !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.02em !important;
+}
+#cambiarClaveModal .btn {
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+}
+#cambiarClaveModal .form-control {
+    border-radius: 8px !important;
+    border: 1.5px solid var(--border-color) !important;
+    background: var(--input-bg) !important;
+    color: var(--input-color) !important;
+    font-size: 1.05rem !important;
+}
+
+/* Carrito y pedidos */
+#carritoContent, #pedidosInfo {
+    background: var(--bg-primary) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 2px 12px var(--shadow-color) !important;
+    padding: 1.5rem 1rem !important;
+    margin-bottom: 1.5rem !important;
+    border: 1.5px solid var(--border-color) !important;
+}
+#carritoContent .list-group-item, #pedidosInfo .card {
+    background: var(--bg-secondary) !important;
+    border-radius: 8px !important;
+    border: 1px solid var(--border-color) !important;
+    margin-bottom: 0.7rem !important;
+    box-shadow: 0 2px 8px var(--shadow-color) !important;
+    transition: box-shadow 0.3s !important;
+}
+#carritoContent .list-group-item:hover, #pedidosInfo .card:hover {
+    box-shadow: 0 6px 18px var(--shadow-color) !important;
+}
+#carritoContent .btn-danger, #pedidosInfo .btn-danger {
+    background: linear-gradient(90deg, #ff4d4f 60%, #ff7875 100%) !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 6px !important;
+    font-weight: 600 !important;
+    box-shadow: 0 2px 8px rgba(255,77,79,0.08) !important;
+    transition: background 0.3s, box-shadow 0.3s !important;
+}
+#carritoContent .btn-danger:hover, #pedidosInfo .btn-danger:hover {
+    background: #ff7875 !important;
+    box-shadow: 0 4px 16px rgba(255,77,79,0.13) !important;
+}
+
+/* Badges de estado de pedido */
+#pedidosInfo .badge {
+    font-size: 0.95rem !important;
+    padding: 0.45em 1.1em !important;
+    border-radius: 12px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.01em !important;
+    box-shadow: 0 2px 8px var(--shadow-color) !important;
+}
+
+/* Alertas personalizadas */
+#alertaExito, #alertaError, #alertaCompra {
+    border-radius: 10px !important;
+    font-size: 1.08rem !important;
+    font-weight: 500 !important;
+    box-shadow: 0 2px 12px var(--shadow-color) !important;
+    border: 1.5px solid var(--border-color) !important;
+    padding: 1rem 1.5rem !important;
+    margin-top: 1.2rem !important;
+    margin-bottom: 0.5rem !important;
+    opacity: 0.97 !important;
+    z-index: 1100 !important;
+}
+#alertaExito.show, #alertaError.show, #alertaCompra.show {
+    animation: fadeInAlert 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+@keyframes fadeInAlert {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 0.97; transform: translateY(0); }
+}
+
+/* Títulos y subtítulos */
+.card-header h1, h2.h4 {
+    color: var(--text-primary) !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.02em !important;
+    margin-bottom: 1.2rem !important;
+}
+
+/* Responsive para la tarjeta de cuenta */
+@media (max-width: 768px) {
+    #usuarioInfo, .card-body {
+        padding: 1.2rem 0.5rem 1.2rem 0.5rem !important;
+    }
+    #carritoContent, #pedidosInfo {
+        padding: 0.7rem 0.2rem !important;
+    }
+}
+
+/* --- Fin estilos personalizados my-account --- */
