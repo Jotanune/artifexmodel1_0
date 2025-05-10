@@ -103,7 +103,7 @@
                                 <input type="text" class="form-control" id="provinciaEnvio" name="provincia" value="<%= usuario.getProvincia() != null ? usuario.getProvincia() : "" %>" required>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Código Postal</label>
+                                <label class="form-label" data-i18n="codigoPostal">Código Postal</label>
                                 <input type="text" class="form-control" id="cpEnvio" name="cp" pattern="[0-9]{5}" value="<%= usuario.getCp() != null ? usuario.getCp() : "" %>" required>
                             </div>
                         </div>
