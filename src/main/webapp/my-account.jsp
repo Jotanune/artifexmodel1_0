@@ -37,17 +37,11 @@
             <div class="card-body">
                 <div id="usuarioInfo" class="mb-4">
                     <div class="row mb-3">
-                        <div class="col-md-6">
-                            <p class="mb-2"><strong>Nombre:</strong> <span class="text-muted"><%= usuario.getNombre() %> <%= usuario.getApellidos() %></span></p>
+                        <div class="col-md-6">                            <p class="mb-2"><strong>Nombre:</strong> <span class="text-muted"><%= usuario.getNombre() %> <%= usuario.getApellidos() %></span></p>
                             <p class="mb-2"><strong>Email:</strong> <span class="text-muted"><%= usuario.getEmail() %></span></p>
                             <p class="mb-2"><strong>Contraseña:</strong> <span class="text-muted"><%= passwordMask %></span></p>
-                            <p class="mb-2"><strong>Teléfono:</strong> <span class="text-muted"><%= usuario.getTelefono() != null ? usuario.getTelefono() : "No especificado" %></span></p>
                         </div>
                         <div class="col-md-6">
-                            <p class="mb-2"><strong>Dirección:</strong> <span class="text-muted"><%= usuario.getDomicilio() != null ? usuario.getDomicilio() : "No especificado" %></span></p>
-                            <p class="mb-2"><strong>Población:</strong> <span class="text-muted"><%= usuario.getPoblacion() != null ? usuario.getPoblacion() : "No especificada" %></span></p>
-                            <p class="mb-2"><strong>Provincia:</strong> <span class="text-muted"><%= usuario.getProvincia() != null ? usuario.getProvincia() : "No especificada" %></span></p>
-                            <p class="mb-2"><strong>Código Postal:</strong> <span class="text-muted"><%= usuario.getCp() != null ? usuario.getCp() : "No especificado" %></span></p>
                         </div>
                     </div>
                     <button class="btn btn-primary w-100" onclick="editarUsuario()">Editar Datos</button>

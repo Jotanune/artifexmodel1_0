@@ -337,18 +337,11 @@ function editarUsuario() {
     // Extraer los valores de los elementos
     const nombreCompleto = infoElements[0].querySelector('.text-muted').textContent.trim();
     const email = infoElements[1].querySelector('.text-muted').textContent.trim();
-    const telefono = infoElements[3].querySelector('.text-muted').textContent.trim();
-    const domicilio = infoElements[4].querySelector('.text-muted').textContent.trim();
-    const poblacion = infoElements[5].querySelector('.text-muted').textContent.trim();
-    const provincia = infoElements[6].querySelector('.text-muted').textContent.trim();
-    const cp = infoElements[7].querySelector('.text-muted').textContent.trim();
 
     // Separar nombre y apellidos
     const nombreParts = nombreCompleto.split(' ');
     const nombre = nombreParts[0];
-    const apellidos = nombreParts.slice(1).join(' ');
-
-    const formulario = `
+    const apellidos = nombreParts.slice(1).join(' ');    const formulario = `
         <form id="formularioEditar" class="row">
             <div class="col-md-6">
                 <div class="mb-3">
@@ -363,28 +356,8 @@ function editarUsuario() {
                     <label class="form-label">Email</label>
                     <input type="email" class="form-control" value="${email}" readonly>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">Teléfono</label>
-                    <input type="tel" class="form-control" name="telefono" value="${telefono !== 'No especificado' ? telefono : ''}">
-                </div>
             </div>
             <div class="col-md-6">
-                <div class="mb-3">
-                    <label class="form-label">Dirección</label>
-                    <input type="text" class="form-control" name="domicilio" value="${domicilio !== 'No especificado' ? domicilio : ''}">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Población</label>
-                    <input type="text" class="form-control" name="poblacion" value="${poblacion !== 'No especificada' ? poblacion : ''}">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Provincia</label>
-                    <input type="text" class="form-control" name="provincia" value="${provincia !== 'No especificada' ? provincia : ''}">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Código Postal</label>
-                    <input type="text" class="form-control" name="cp" value="${cp !== 'No especificado' ? cp : ''}">
-                </div>
             </div>
             <div class="col-12 mt-3">
                 <button type="submit" class="btn btn-success">Guardar Cambios</button>

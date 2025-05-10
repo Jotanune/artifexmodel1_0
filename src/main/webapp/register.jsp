@@ -72,41 +72,7 @@
         <label for="confirmPassword" class="form-label" data-i18n="confirmarContrasena">Confirmar contraseña</label>
         <input type="password" class="form-control" id="confirmPassword" required>
         <div class="invalid-feedback" data-i18n="contrasenasNoCoinciden">Las contraseñas no coinciden.</div>
-      </div>
-
-      <div class="mb-3">
-        <label for="domicilio" class="form-label" data-i18n="domicilio">Domicilio *</label>
-        <input type="text" class="form-control" id="domicilio" name="domicilio" required>
-        <div class="invalid-feedback" data-i18n="domicilioObligatorio">El domicilio es obligatorio.</div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-6 mb-3">
-          <label for="poblacion" class="form-label" data-i18n="poblacion">Población *</label>
-          <input type="text" class="form-control" id="poblacion" name="poblacion" required>
-          <div class="invalid-feedback" data-i18n="poblacionObligatoria">La población es obligatoria.</div>
-        </div>
-        <div class="col-md-6 mb-3">
-          <label for="provincia" class="form-label" data-i18n="provincia">Provincia *</label>
-          <input type="text" class="form-control" id="provincia" name="provincia" required>
-          <div class="invalid-feedback" data-i18n="provinciaObligatoria">La provincia es obligatoria.</div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-6 mb-3">
-          <label for="cp" class="form-label" data-i18n="codigoPostal">Código Postal *</label>
-          <input type="text" class="form-control" id="cp" name="cp" pattern="[0-9]{5}" required>
-          <div class="invalid-feedback" data-i18n="codigoPostalValido">El código postal debe tener 5 dígitos.</div>
-        </div>
-        <div class="col-md-6 mb-3">
-          <label for="telefono" class="form-label" data-i18n="telefono">Teléfono *</label>
-          <input type="tel" class="form-control" id="telefono" name="telefono" pattern="[0-9]{9}" required>
-          <div class="invalid-feedback" data-i18n="telefonoValido">El teléfono debe tener 9 dígitos.</div>
-        </div>
-      </div>
-
-      <div class="mb-3">
+      </div>      <div class="mb-3">
         <div class="form-check">
           <input type="checkbox" class="form-check-input" id="terminos" required>
           <label class="form-check-label" for="terminos" data-i18n="aceptarTerminos">Acepto los términos y condiciones</label>

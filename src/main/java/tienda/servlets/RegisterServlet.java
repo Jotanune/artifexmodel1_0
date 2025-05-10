@@ -100,13 +100,13 @@ public class RegisterServlet extends HttpServlet {
             usuario.setUsuario(username);
             usuario.setClave(claveHash);
             usuario.setNombre(request.getParameter("nombre"));
-            usuario.setApellidos(request.getParameter("apellidos"));
-            usuario.setEmail(email);
-            usuario.setDomicilio(request.getParameter("domicilio"));
-            usuario.setPoblacion(request.getParameter("poblacion"));
-            usuario.setProvincia(request.getParameter("provincia"));
-            usuario.setCp(request.getParameter("cp"));
-            usuario.setTelefono(request.getParameter("telefono"));
+            usuario.setApellidos(request.getParameter("apellidos"));            usuario.setEmail(email);
+            // Establecer valores por defecto para los campos eliminados
+            usuario.setDomicilio("");
+            usuario.setPoblacion("");
+            usuario.setProvincia("");
+            usuario.setCp("");
+            usuario.setTelefono("");
             usuario.setActivo(1);
             usuario.setAdmin(0);
 
