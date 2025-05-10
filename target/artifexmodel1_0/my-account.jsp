@@ -53,41 +53,6 @@
                     <button class="btn btn-primary w-100" onclick="editarUsuario()">Editar Datos</button>
                 </div>
 
-                <!-- Modal para cambiar contraseña -->
-                <div class="modal fade" id="cambiarClaveModal" tabindex="-1">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Cambiar Contraseña</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form id="formCambiarClave">
-                                    <div class="mb-3">
-                                        <label class="form-label">Contraseña Actual</label>
-                                        <input type="password" class="form-control" id="claveActual" required>
-                                    </div>
-                                    <div id="nuevaClaveFields" style="display: none;">
-                                        <div class="mb-3">
-                                            <label class="form-label">Nueva Contraseña</label>
-                                            <input type="password" class="form-control" id="nuevaClave" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label">Confirmar Nueva Contraseña</label>
-                                            <input type="password" class="form-control" id="confirmarClave" required>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                <button type="button" class="btn btn-primary" id="btnVerificarClave">Verificar Contraseña</button>
-                                <button type="button" class="btn btn-success" id="btnGuardarClave" style="display: none;">Guardar Nueva Contraseña</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <div id="alertaExito" class="alert alert-success alert-dismissible fade" role="alert" style="display: none;">
                     <span id="alertaExitoMensaje"></span>
                     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
@@ -120,6 +85,42 @@
     </div>
 
     <mi-footer></mi-footer>
+
+    <!-- Modal para cambiar contraseña (fuera de la tarjeta para evitar bugs al editar datos) -->
+    <div class="modal fade" id="cambiarClaveModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Cambiar Contraseña</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formCambiarClave">
+                        <div class="mb-3">
+                            <label class="form-label">Contraseña Actual</label>
+                            <input type="password" class="form-control" id="claveActual" required>
+                        </div>
+                        <div id="nuevaClaveFields" style="display: none;">
+                            <div class="mb-3">
+                                <label class="form-label">Nueva Contraseña</label>
+                                <input type="password" class="form-control" id="nuevaClave" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Confirmar Nueva Contraseña</label>
+                                <input type="password" class="form-control" id="confirmarClave" required>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="btnVerificarClave">Verificar Contraseña</button>
+                    <button type="button" class="btn btn-success" id="btnGuardarClave" style="display: none;">Guardar Nueva Contraseña</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
