@@ -1482,3 +1482,182 @@ input[type="range"]::-webkit-slider-thumb:hover {
 }
 
 /* --- Fin estilos personalizados my-account --- */
+
+/* --- Estilos personalizados para Login y Register --- */
+
+/* Contenedor principal para login y register */
+#loginForm,
+#registroForm {
+    max-width: 500px !important;
+    margin: 2rem auto !important;
+    padding: 2rem !important;
+    background-color: var(--bg-primary) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 8px 24px var(--shadow-color) !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+    animation: formFadeIn 0.5s ease forwards !important;
+}
+
+#loginForm:hover,
+#registroForm:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 12px 30px var(--shadow-color) !important;
+}
+
+/* Títulos específicos de login y register */
+#loginForm ~ h1,
+#registroForm ~ h1,
+h1[data-i18n="iniciarSesion"],
+h1[data-i18n="crearCuenta"] {
+    font-size: 2.5rem !important;
+    font-weight: 700 !important;
+    margin-bottom: 2rem !important;
+    color: var(--text-primary) !important;
+    text-transform: none !important;
+    letter-spacing: -0.5px !important;
+    position: relative !important;
+    padding-bottom: 1rem !important;
+}
+
+#loginForm ~ h1::after,
+#registroForm ~ h1::after,
+h1[data-i18n="iniciarSesion"]::after,
+h1[data-i18n="crearCuenta"]::after {
+    content: "" !important;
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 60px !important;
+    height: 4px !important;
+    background-color: var(--text-primary) !important;
+    border-radius: 2px !important;
+}
+
+/* Campos de formulario específicos */
+#loginForm .form-label,
+#registroForm .form-label {
+    font-weight: 500 !important;
+    color: var(--text-primary) !important;
+    margin-bottom: 0.5rem !important;
+    font-size: 0.95rem !important;
+}
+
+#loginForm .form-control,
+#registroForm .form-control {
+    border: 2px solid var(--border-color) !important;
+    border-radius: 8px !important;
+    padding: 0.75rem 1rem !important;
+    font-size: 1rem !important;
+    transition: all 0.3s ease !important;
+    background-color: var(--input-bg) !important;
+    color: var(--input-color) !important;
+}
+
+#loginForm .form-control:focus,
+#registroForm .form-control:focus {
+    border-color: var(--text-primary) !important;
+    box-shadow: 0 0 0 4px rgba(44, 44, 44, 0.1) !important;
+    outline: none !important;
+}
+
+/* Botones específicos */
+#loginForm .btn-primary,
+#registroForm .btn-primary {
+    width: 100% !important;
+    padding: 0.75rem !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    margin-bottom: 1rem !important;
+    border-radius: 8px !important;
+    transition: all 0.3s ease !important;
+}
+
+#loginForm .btn-link,
+#registroForm .btn-link {
+    color: var(--text-primary) !important;
+    text-decoration: none !important;
+    font-weight: 500 !important;
+    transition: all 0.3s ease !important;
+    display: block !important;
+    text-align: center !important;
+}
+
+#loginForm .btn-link:hover,
+#registroForm .btn-link:hover {
+    color: var(--text-secondary) !important;
+    text-decoration: none !important;
+    opacity: 0.8 !important;
+}
+
+/* Checkbox personalizado específico */
+#registroForm .form-check {
+    margin-bottom: 1.5rem !important;
+}
+
+#registroForm .form-check-input {
+    width: 1.2rem !important;
+    height: 1.2rem !important;
+    margin-top: 0.2rem !important;
+    border: 2px solid var(--checkbox-border) !important;
+    background-color: var(--checkbox-bg) !important;
+    cursor: pointer !important;
+}
+
+#registroForm .form-check-input:checked {
+    background-color: var(--checkbox-checked-bg) !important;
+    border-color: var(--checkbox-checked-border) !important;
+}
+
+#registroForm .form-check-label {
+    color: var(--text-secondary) !important;
+    font-size: 0.95rem !important;
+    cursor: pointer !important;
+}
+
+/* Mensajes de error específicos */
+#loginForm .invalid-feedback,
+#registroForm .invalid-feedback,
+#loginForm .text-danger,
+#registroForm .text-danger {
+    font-size: 0.85rem !important;
+    margin-top: 0.25rem !important;
+    color: #dc3545 !important;
+}
+
+#loginError,
+#registerError {
+    background-color: rgba(220, 53, 69, 0.1) !important;
+    border: none !important;
+    color: #dc3545 !important;
+    border-radius: 8px !important;
+    padding: 1rem !important;
+    margin-bottom: 1.5rem !important;
+}
+
+/* Animaciones */
+@keyframes formFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+    #loginForm,
+    #registroForm {
+        padding: 1.5rem !important;
+        margin: 1rem !important;
+    }
+
+    h1[data-i18n="iniciarSesion"],
+    h1[data-i18n="crearCuenta"] {
+        font-size: 2rem !important;
+    }
+}
